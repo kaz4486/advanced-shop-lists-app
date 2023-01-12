@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Container } from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getLists,
@@ -8,12 +8,14 @@ import {
 } from '../../../redux/listsRedux';
 import Spinner from 'react-bootstrap/Spinner';
 import { Alert } from 'react-bootstrap';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate, Link } from 'react-router-dom';
+import ListSummary from '../../common/ListSummary';
 
 const Lists = () => {
   const dispatch = useDispatch();
   const lists = useSelector(getLists);
   const request = useSelector(getRequest);
+  const navigate = useNavigate();
 
   console.log(lists);
 
@@ -36,14 +38,7 @@ const Lists = () => {
       <Container>
         {lists.map((list) => (
           <div key={list._id}>
-            {list.items.map((item) => (
-              <div key={item.name}>
-                <h4>{item.name}</h4>
-                <p>{item.amount}</p>
-                <p>{item.obj}</p>
-                <p>{item.jedn}</p>
-              </div>
-            ))}
+            <ListSummary list={list} />
           </div>
         ))}
       </Container>

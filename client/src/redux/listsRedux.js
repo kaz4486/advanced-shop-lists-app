@@ -7,6 +7,11 @@ export const getLists = ({ lists }) => lists.data;
 
 export const getRequest = ({ lists }) => lists.request;
 
+export const getListById = ({ lists }, listId) =>
+  lists.data.find((list) => list._id === listId);
+
+//actions
+
 const reducerName = 'lists';
 
 const createActionName = (actionName) => `app/${reducerName}/${actionName}`;

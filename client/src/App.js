@@ -14,7 +14,7 @@ const App = () => {
     <MainLayout>
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='list' element={<List />} />
+        <Route path='lists/:id' element={<List />} />
         <Route path='list/ad' element={<AdList />} />
         <Route path='lists' element={<Lists />} />
       </Routes>
