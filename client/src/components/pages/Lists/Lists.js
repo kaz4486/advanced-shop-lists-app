@@ -8,7 +8,7 @@ import {
 } from '../../../redux/listsRedux';
 import Spinner from 'react-bootstrap/Spinner';
 import { Alert } from 'react-bootstrap';
-import { useParams, Navigate, useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 const Lists = () => {
   const dispatch = useDispatch();
@@ -38,7 +38,10 @@ const Lists = () => {
           <div key={list._id}>
             {list.items.map((item) => (
               <div key={item.name}>
-                <h1>{item.name}</h1>
+                <h4>{item.name}</h4>
+                <p>{item.amount}</p>
+                <p>{item.obj}</p>
+                <p>{item.jedn}</p>
               </div>
             ))}
           </div>
