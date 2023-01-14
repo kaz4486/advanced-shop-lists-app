@@ -1,8 +1,9 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
+import itemsReducer from './itemsRedux';
 import listsReducer from './listsRedux';
 
-const subreducers = { lists: listsReducer };
+const subreducers = { lists: listsReducer, items: itemsReducer };
 
 const reducer = combineReducers(subreducers);
 

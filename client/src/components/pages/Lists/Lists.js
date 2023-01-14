@@ -9,7 +9,7 @@ import {
 import Spinner from 'react-bootstrap/Spinner';
 import { Alert } from 'react-bootstrap';
 import { Navigate, useNavigate, Link } from 'react-router-dom';
-import ListSummary from '../../common/ListSummary';
+import ListSummary from '../../common/ListSummary/ListSummary';
 
 const Lists = () => {
   const dispatch = useDispatch();

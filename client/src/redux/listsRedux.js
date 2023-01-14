@@ -37,12 +37,31 @@ export const removeList = (payload) => ({ type: REMOVE_LIST, payload });
 //thunks
 export const loadListsRequest = () => {
   return async (dispatch) => {
-    dispatch(startRequest());
+    dispatch(startRequest({ name: LOAD_LISTS }));
     try {
       let res = await axios.get(`${API_URL}/lists`);
       console.log(res.data);
       dispatch(loadLists(res.data));
-      dispatch(endRequest());
+      dispatch(endRequest({ name: LOAD_LISTS }));
+    } catch (e) {
+      dispatch(errorRequest(e.message));
+    }
+  };
+};
+
+export const createListRequest = (data) => {
+  return async (dispatch) => {
+    dispatch(startRequest({ name: CREATE_LIST }));
+    try {
+      let res = await axios.post(
+        `${API_URL}/lists`,
+        data,
+        { withCredentials: true },
+        { headers: { 'Content-Type': 'text/html' } }
+      );
+
+      dispatch(createList(res.data));
+      dispatch(endRequest({ name: CREATE_LIST }));
     } catch (e) {
       dispatch(errorRequest(e.message));
     }
@@ -58,6 +77,8 @@ const listsReducer = (statePart = initialState, action = {}) => {
   switch (action.type) {
     case LOAD_LISTS:
       return { ...statePart, data: [...action.payload] };
+    case CREATE_LIST:
+      return { ...statePart, data: [...statePart.data, ...action.payload] };
     case START_REQUEST:
       return {
         ...statePart,
