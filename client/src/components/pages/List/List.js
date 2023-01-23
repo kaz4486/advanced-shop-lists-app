@@ -7,7 +7,9 @@ import {
   loadListsRequest,
 } from '../../../redux/listsRedux';
 import Spinner from 'react-bootstrap/Spinner';
-import { Alert } from 'react-bootstrap';
+import { Alert, Row, Col, Container } from 'react-bootstrap';
+import ItemBar from '../../common/ItemBar/ItemBar';
+import ListItem from '../../common/ListItem/ListItem';
 
 const List = () => {
   const { id } = useParams();
@@ -33,13 +35,9 @@ const List = () => {
   if (request.success)
     return (
       <div>
+        <ItemBar />
         {list.items.map((item) => (
-          <div key={item.name}>
-            <h4>{item.name}</h4>
-            <p>{item.amount}</p>
-            <p>{item.obj}</p>
-            <p>{item.jedn}</p>
-          </div>
+          <ListItem item={item} key={item.name} />
         ))}
       </div>
     );
