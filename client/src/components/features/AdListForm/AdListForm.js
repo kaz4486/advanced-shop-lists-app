@@ -50,6 +50,7 @@ const AdListForm = () => {
         <SwitchSystem action={handleSwitchSystem} system={system} />
         {items.length !== 0 &&
           items.map((item) => {
+            console.log(item);
             if (item.id)
               return (
                 <div key={item.id}>

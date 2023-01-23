@@ -5,7 +5,6 @@ import { Col, Row } from 'react-bootstrap';
 
 const ListItem = ({ item, removeAction }) => {
   console.log(item);
-
   if (item)
     return (
       <Container key={item.name}>
