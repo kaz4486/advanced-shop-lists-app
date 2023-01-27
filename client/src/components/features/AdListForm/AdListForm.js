@@ -13,6 +13,7 @@ import ListForm from '../../common/ListForm/ListForm.tsx';
 import ListItem from '../../common/ListItem/ListItem';
 import { Alert } from 'react-bootstrap';
 import SwitchSystem from '../SwitchSystem/SwitchSystem';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 const AdListForm = () => {
   const [system, setSystem] = useState('metric');
@@ -48,17 +49,45 @@ const AdListForm = () => {
       <Container>
         <ItemBar />
         <SwitchSystem action={handleSwitchSystem} system={system} />
-        {items.length !== 0 &&
-          items.map((item) => {
-            console.log(item);
-            if (item.id)
-              return (
-                <div key={item.id}>
-                  <ListItem item={item} removeAction={handleItemRemove} />
-                </div>
-              );
-            return null;
-          })}
+
+        {items.length !== 0 && (
+          <DragDropContext>
+            <Droppable droppableId='items'>
+              {(provided) => (
+                <ul {...provided.droppableProps} ref={provided.innerRef}>
+                  {items.map((item, index) => {
+                    if (item.id)
+                      return (
+                        <Draggable
+                          key={item.id}
+                          draggableId={item.id}
+                          index={index}
+                        >
+                          {(provided) => {
+                            return (
+                              <li
+                                ref={provided.innerRef}
+                                {...provided.draggableProps}
+                                {...provided.dragHandleProps}
+                              >
+                                <ListItem
+                                  item={item}
+                                  removeAction={handleItemRemove}
+                                />
+                              </li>
+                            );
+                          }}
+                        </Draggable>
+                      );
+                    return null;
+                  })}
+                  {provided.placeholder}
+                </ul>
+              )}
+            </Droppable>
+          </DragDropContext>
+        )}
+
         <ListForm system={system} />
       </Container>
     );
