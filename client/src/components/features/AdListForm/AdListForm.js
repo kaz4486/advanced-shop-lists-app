@@ -16,12 +16,26 @@ import SwitchSystem from '../SwitchSystem/SwitchSystem';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 const AdListForm = () => {
-  const [system, setSystem] = useState('metric');
-
   const dispatch = useDispatch();
   const items = useSelector(getItems);
   const request = useSelector(getRequest);
+
+  const [system, setSystem] = useState('metric');
+  const [itemsState, setItemsState] = useState(null);
+
+  const handleOnDragEnd = (result) => {
+    console.log(result);
+    if (!result.destination) return;
+
+    const items = Array.from(itemsState);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+
+    setItemsState(items);
+  };
+
   console.log(items);
+  console.log(itemsState);
 
   const handleSwitchSystem = () => {
     system === 'metric' ? setSystem('imperial') : setSystem('metric');
@@ -33,7 +47,8 @@ const AdListForm = () => {
 
   useEffect(() => {
     dispatch(loadListsRequest());
-  }, [dispatch]);
+    setItemsState(items);
+  }, [dispatch, items]);
 
   if (request.pending)
     return (
@@ -51,36 +66,37 @@ const AdListForm = () => {
         <SwitchSystem action={handleSwitchSystem} system={system} />
 
         {items.length !== 0 && (
-          <DragDropContext>
+          <DragDropContext onDragEnd={handleOnDragEnd}>
             <Droppable droppableId='items'>
               {(provided) => (
                 <ul {...provided.droppableProps} ref={provided.innerRef}>
-                  {items.map((item, index) => {
-                    if (item.id)
-                      return (
-                        <Draggable
-                          key={item.id}
-                          draggableId={item.id}
-                          index={index}
-                        >
-                          {(provided) => {
-                            return (
-                              <li
-                                ref={provided.innerRef}
-                                {...provided.draggableProps}
-                                {...provided.dragHandleProps}
-                              >
-                                <ListItem
-                                  item={item}
-                                  removeAction={handleItemRemove}
-                                />
-                              </li>
-                            );
-                          }}
-                        </Draggable>
-                      );
-                    return null;
-                  })}
+                  {itemsState !== null &&
+                    itemsState.map((item, index) => {
+                      if (item.id)
+                        return (
+                          <Draggable
+                            key={item.id}
+                            draggableId={item.id}
+                            index={index}
+                          >
+                            {(provided) => {
+                              return (
+                                <li
+                                  ref={provided.innerRef}
+                                  {...provided.draggableProps}
+                                  {...provided.dragHandleProps}
+                                >
+                                  <ListItem
+                                    item={item}
+                                    removeAction={handleItemRemove}
+                                  />
+                                </li>
+                              );
+                            }}
+                          </Draggable>
+                        );
+                      return null;
+                    })}
                   {provided.placeholder}
                 </ul>
               )}
