@@ -9,11 +9,13 @@ import {
   loadListsRequest,
 } from '../../../redux/listsRedux';
 import ItemBar from '../../common/ItemBar/ItemBar';
-import ListForm from '../../common/ListForm/ListForm.tsx';
-import ListItem from '../../common/ListItem/ListItem';
+import ItemsForm from '../../common/ItemsForm/ItemsForm.tsx';
+
 import { Alert } from 'react-bootstrap';
 import SwitchSystem from '../SwitchSystem/SwitchSystem';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+
+import ListNameForm from '../../common/ListNameForm/ListNameForm';
+import ItemsList from '../../views/ItemsList/ItemsList';
 
 const AddListForm = () => {
   const dispatch = useDispatch();
@@ -21,21 +23,7 @@ const AddListForm = () => {
   const request = useSelector(getRequest);
 
   const [system, setSystem] = useState('metric');
-  const [itemsState, setItemsState] = useState(null);
-
-  const handleOnDragEnd = (result) => {
-    console.log(result);
-    if (!result.destination) return;
-
-    const items = Array.from(itemsState);
-    const [reorderedItem] = items.splice(result.source.index, 1);
-    items.splice(result.destination.index, 0, reorderedItem);
-
-    setItemsState(items);
-  };
-
-  console.log(items);
-  console.log(itemsState);
+  const [submittedListName, setSubmittedListName] = useState('');
 
   const handleSwitchSystem = () => {
     system === 'metric' ? setSystem('imperial') : setSystem('metric');
@@ -47,7 +35,6 @@ const AddListForm = () => {
 
   useEffect(() => {
     dispatch(loadListsRequest());
-    setItemsState(items);
   }, [dispatch, items]);
 
   if (request.pending)
@@ -62,49 +49,19 @@ const AddListForm = () => {
   if (request.success)
     return (
       <Container>
-        <ItemBar />
+        <ListNameForm
+          subbmitedName={submittedListName}
+          action={setSubmittedListName}
+        />
         <SwitchSystem action={handleSwitchSystem} system={system} />
-
+        <ItemBar />
         {items.length !== 0 && (
-          <DragDropContext onDragEnd={handleOnDragEnd}>
-            <Droppable droppableId='items'>
-              {(provided) => (
-                <ul {...provided.droppableProps} ref={provided.innerRef}>
-                  {itemsState !== null &&
-                    itemsState.map((item, index) => {
-                      if (item.id)
-                        return (
-                          <Draggable
-                            key={item.id}
-                            draggableId={item.id}
-                            index={index}
-                          >
-                            {(provided) => {
-                              return (
-                                <li
-                                  ref={provided.innerRef}
-                                  {...provided.draggableProps}
-                                  {...provided.dragHandleProps}
-                                >
-                                  <ListItem
-                                    item={item}
-                                    removeAction={handleItemRemove}
-                                  />
-                                </li>
-                              );
-                            }}
-                          </Draggable>
-                        );
-                      return null;
-                    })}
-                  {provided.placeholder}
-                </ul>
-              )}
-            </Droppable>
-          </DragDropContext>
+          <ItemsList items={items} removeItem={handleItemRemove} />
         )}
-
-        <ListForm system={system} />
+        <ItemsForm system={system} />
+        <form>
+          <button>Create List</button>
+        </form>
       </Container>
     );
 };
