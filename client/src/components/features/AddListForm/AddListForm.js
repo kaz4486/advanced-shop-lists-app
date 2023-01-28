@@ -15,7 +15,7 @@ import { Alert } from 'react-bootstrap';
 import SwitchSystem from '../SwitchSystem/SwitchSystem';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
-const AdListForm = () => {
+const AddListForm = () => {
   const dispatch = useDispatch();
   const items = useSelector(getItems);
   const request = useSelector(getRequest);
@@ -109,4 +109,4 @@ const AdListForm = () => {
     );
 };
 
-export default AdListForm;
+export default AddListForm;

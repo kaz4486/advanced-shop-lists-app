@@ -1,15 +1,15 @@
 import { useDispatch } from 'react-redux';
-import AdListForm from '../../features/AdListForm/AdListForm';
+import AddListForm from '../../features/AddListForm/AddListForm';
 
-const AdList = () => {
+const AddList = () => {
   const dispatch = useDispatch();
 
   return (
     <div>
       <h1>Ad list</h1>
-      <AdListForm />
+      <AddListForm />
     </div>
   );
 };
 
-export default AdList;
+export default AddList;

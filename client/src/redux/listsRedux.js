@@ -63,7 +63,7 @@ export const createListRequest = (data) => {
       dispatch(createList(res.data));
       dispatch(endRequest({ name: CREATE_LIST }));
     } catch (e) {
-      dispatch(errorRequest(e.message));
+      dispatch(errorRequest({ name: CREATE_LIST, error: e.message }));
     }
   };
 };

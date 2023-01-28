@@ -56,6 +56,10 @@ const ListForm = ({ system }) => {
               {...register(`item.${index}.volume`, {
                 disabled: false,
                 valueAsNumber: true,
+                required: {
+                  value: true,
+                  message: 'You must insert volume of this product',
+                },
                 min: {
                   value: 1,
                   message: 'There must be at least one product of this kind',
@@ -69,10 +73,6 @@ const ListForm = ({ system }) => {
               {...register(`item.${index}.volume`, {
                 disabled: true,
                 valueAsNumber: true,
-                min: {
-                  value: 1,
-                  message: 'There must be at least one product of this kind',
-                },
               })}
             />
           )
@@ -148,6 +148,7 @@ const ListForm = ({ system }) => {
                 key={field.id}
                 {...{ control, index, field }}
               />
+              <p>{errors.item?.[index]?.volume?.message}</p>
             </label>
             <button type='button' onClick={() => remove(index)}>
               Remove
