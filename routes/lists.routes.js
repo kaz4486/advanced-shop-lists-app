@@ -9,11 +9,7 @@ router.get('/lists/:id', (req, res) => {
   res.json(db.employees.find((item) => item.id == req.params.id));
 });
 
-router.post('/lists', (req, res) => {
-  const { firstName, lastName } = req.body;
-  db.employees.push({ id: 3, firstName, lastName });
-  res.json({ message: 'OK' });
-});
+router.post('/lists', ListsController.post);
 
 router.put('/lists/:id', (req, res) => {
   const { firstName, lastName } = req.body;

@@ -29,10 +29,10 @@ const Lists = () => {
         <span className='visually-hidden'>Loading...</span>
       </Spinner>
     );
-  if (request.error) return <Alert color='warning'>{request.error}</Alert>;
+
   if (!request.success)
     return <Alert color='info'>Something went wrong...</Alert>;
-  if (!lists) return <Navigate to='/' />;
+  // if (lists.length === 0) return <Navigate to='/' />;
   if (request.success)
     return (
       <Container>

@@ -3,12 +3,17 @@ import { Container } from 'react-bootstrap';
 
 const ListNameForm = ({ subbmitedName, action }) => {
   const [listName, setListName] = useState('');
+  const [listNameError, setListNameError] = useState(false);
   //   const [submittedListName, setSubmittedListName] = useState('');
 
   const handleListNameSubmit = (e) => {
     e.preventDefault();
-    action(listName);
-    // required name
+    if (listName === '' || listName.length > 30) {
+      setListNameError(true);
+    } else {
+      setListNameError(false);
+      action(listName);
+    }
   };
 
   return (
@@ -22,6 +27,9 @@ const ListNameForm = ({ subbmitedName, action }) => {
             onChange={(e) => setListName(e.target.value)}
             placeholder='Insert list name...'
           />
+          {listNameError && (
+            <p>List name is required and should have max 30 sings</p>
+          )}
 
           <button type='submit'>Submit list name</button>
         </form>

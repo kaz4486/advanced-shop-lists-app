@@ -87,12 +87,12 @@ const listsReducer = (statePart = initialState, action = {}) => {
     case END_REQUEST:
       return {
         ...statePart,
-        request: { pending: false, error: null, success: true },
+        request: { pending: false, error: false, success: true },
       };
     case ERROR_REQUEST:
       return {
         ...statePart,
-        request: { pending: false, error: true, success: true },
+        request: { pending: false, error: true, success: false },
       };
     default:
       return statePart;
