@@ -24,8 +24,8 @@ const AddListForm = () => {
   const request = useSelector(getRequest);
 
   const [system, setSystem] = useState('metric');
-  const [submittedListName, setSubmittedListName] = useState(null);
-  const [submitListError, setSubmittedListError] = useState(false);
+  const [submitedListName, setSubmitedListName] = useState(null);
+  const [submitListError, setSubmitedListError] = useState(false);
 
   const handleSwitchSystem = () => {
     system === 'metric' ? setSystem('imperial') : setSystem('metric');
@@ -39,17 +39,24 @@ const AddListForm = () => {
     dispatch(loadListsRequest());
   }, [dispatch, items]);
 
-  const handleListSubmit = () => {
-    let listToCreate = new FormData();
-    listToCreate.name = submittedListName;
-    listToCreate.publicationDate = createPublicationDate();
+  const handleListSubmit = (e) => {
+    setSubmitedListError(false);
+    e.preventDefault();
+    let listToCreate = {};
+    // listToCreate.name = submitedListName;
+    const publicationDate = createPublicationDate();
+    // listToCreate.items = items;
+
+    listToCreate.name = submitedListName;
+    listToCreate.publicationDate = publicationDate;
     listToCreate.items = items;
 
-    if (submittedListName && items.length !== 0) {
-      setSubmittedListError(false);
+    console.log(listToCreate);
+    console.log(submitedListName, items.length);
+    if (submitedListName && items.length !== 0) {
       dispatch(createListRequest(listToCreate));
     } else {
-      setSubmittedListError(true);
+      setSubmitedListError(true);
     }
   };
 
@@ -66,8 +73,8 @@ const AddListForm = () => {
     return (
       <Container>
         <ListNameForm
-          subbmitedName={submittedListName}
-          action={setSubmittedListName}
+          subbmitedName={submitedListName}
+          action={setSubmitedListName}
         />
         <SwitchSystem action={handleSwitchSystem} system={system} />
         <ItemBar />
@@ -75,9 +82,10 @@ const AddListForm = () => {
           <ItemsList items={items} removeItem={handleItemRemove} />
         )}
         <ItemsForm system={system} />
-        <form onSubmit={handleListSubmit}>
+        <form onSubmit={(e) => handleListSubmit(e)}>
           <button type='submit'>Create List</button>
         </form>
+        {submitListError && <p>You need to add at least 1 item</p>}
       </Container>
     );
 };

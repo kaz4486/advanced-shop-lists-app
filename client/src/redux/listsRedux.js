@@ -50,15 +50,23 @@ export const loadListsRequest = () => {
 };
 
 export const createListRequest = (data) => {
+  console.log(data);
+
   return async (dispatch) => {
     dispatch(startRequest({ name: CREATE_LIST }));
     try {
+      console.log('tu');
       let res = await axios.post(
         `${API_URL}/lists`,
         data,
+        {
+          retry: 3,
+          retryDelay: 100,
+        },
         { withCredentials: true },
-        { headers: { 'Content-Type': 'text/html' } }
+        { headers: { 'Content-Type': 'application/json' } }
       );
+      console.log(res);
 
       dispatch(createList(res.data));
       dispatch(endRequest({ name: CREATE_LIST }));
@@ -78,7 +86,7 @@ const listsReducer = (statePart = initialState, action = {}) => {
     case LOAD_LISTS:
       return { ...statePart, data: [...action.payload] };
     case CREATE_LIST:
-      return { ...statePart, data: [...statePart.data, ...action.payload] };
+      return { ...statePart, data: [...statePart.data, action.payload] };
     case START_REQUEST:
       return {
         ...statePart,

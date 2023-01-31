@@ -12,8 +12,9 @@ exports.getAll = async (req, res) => {
 };
 
 exports.post = async (req, res) => {
-  const { name, publicationDate, items } = req.body;
   console.log('reqbody', req.body);
+  const { name, publicationDate, items } = req.body;
+
   try {
     if ((isString(name), isString(publicationDate), Array.isArray(items))) {
       console.log('1');

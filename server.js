@@ -28,7 +28,12 @@ mongoose.connect(connectionString, {
 
 const db = mongoose.connection;
 
-app.use(cors());
+app.use(
+  cors({
+    origin: ['http://localhost:3000', 'http://localhost:8000'],
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -50,17 +55,22 @@ app.use(
 
 const listsRoutes = require('./routes/lists.routes');
 
+// app.post('/', function (req, res, next) {
+//   // echo body as JSON
+//   res.send(JSON.stringify(req.body));
+// });
+
 app.use('/api', listsRoutes);
 
 app.use(express.static(path.join(__dirname, '/client/build')));
 app.use(express.static(path.join(__dirname, '/public')));
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '/client/build/index.html'));
-});
-
 app.use((req, res) => {
   res.status(404).send({ message: 'Not found...' });
+});
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '/client/build/index.html'));
 });
 
 db.once('open', () => {
@@ -68,6 +78,6 @@ db.once('open', () => {
 });
 db.on('error', (err) => console.log('Error ' + err));
 
-app.listen('8000', () => {
+app.listen(process.env.PORT || '8000', () => {
   console.log('Server is running on port: 8000');
 });
