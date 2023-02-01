@@ -25,11 +25,7 @@ const itemsReducer = (statePart = [], action = {}) => {
     case ADD_ITEM:
       return [...statePart, { ...action.payload, id: shortid() }];
     case REMOVE_ITEM:
-      return statePart.map((item) =>
-        item.id === action.payload
-          ? { ...statePart.filter((item) => item.id !== action.payload) }
-          : item
-      );
+      return statePart.filter((item) => item.id !== action.payload);
     default:
       return statePart;
   }

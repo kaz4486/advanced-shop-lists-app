@@ -14,10 +14,15 @@ exports.getAll = async (req, res) => {
 exports.post = async (req, res) => {
   console.log('reqbody', req.body);
   const { name, publicationDate, items } = req.body;
+  console.log(items.length);
 
   try {
-    if ((isString(name), isString(publicationDate), Array.isArray(items))) {
-      console.log('1');
+    if (
+      (isString(name),
+      isString(publicationDate),
+      Array.isArray(items),
+      items.length !== 0)
+    ) {
       const newList = await List.create({
         name,
         publicationDate,

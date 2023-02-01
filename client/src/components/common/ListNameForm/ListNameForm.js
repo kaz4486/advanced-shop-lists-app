@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import { Container } from 'react-bootstrap';
 
-const ListNameForm = ({ subbmitedName, action }) => {
+const ListNameForm = ({
+  subbmitedName,
+  setSubmitedListName,
+  setSubmitedListNameError,
+}) => {
   const [listName, setListName] = useState('');
   const [listNameError, setListNameError] = useState(false);
   //   const [submittedListName, setSubmittedListName] = useState('');
@@ -12,8 +16,14 @@ const ListNameForm = ({ subbmitedName, action }) => {
       setListNameError(true);
     } else {
       setListNameError(false);
-      action(listName);
+      setSubmitedListName(listName);
     }
+  };
+
+  const handleInputChange = (value) => {
+    setListName(value);
+    setListNameError(false);
+    setSubmitedListNameError(false);
   };
 
   return (
@@ -24,7 +34,7 @@ const ListNameForm = ({ subbmitedName, action }) => {
           <input
             type='text'
             value={listName}
-            onChange={(e) => setListName(e.target.value)}
+            onChange={(e) => handleInputChange(e.target.value)}
             placeholder='Insert list name...'
           />
           {listNameError && (
@@ -34,7 +44,9 @@ const ListNameForm = ({ subbmitedName, action }) => {
           <button type='submit'>Submit list name</button>
         </form>
       )}
-      {subbmitedName && <button onClick={() => action('')}>Edit name</button>}
+      {subbmitedName && (
+        <button onClick={() => setSubmitedListName('')}>Edit name</button>
+      )}
     </Container>
   );
 };

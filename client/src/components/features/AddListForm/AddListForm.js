@@ -19,10 +19,13 @@ const AddListForm = () => {
   const dispatch = useDispatch();
   const items = useSelector(getItems);
   const request = useSelector(getRequest);
+  console.log(items);
 
   const [system, setSystem] = useState('metric');
   const [submitedListName, setSubmitedListName] = useState(null);
-  const [submitListError, setSubmitedListError] = useState(false);
+
+  const [submitListNameError, setSubmitedListNameError] = useState(false);
+  const [submitListItemError, setSubmitedListItemError] = useState(false);
 
   const handleSwitchSystem = () => {
     system === 'metric' ? setSystem('imperial') : setSystem('metric');
@@ -37,7 +40,8 @@ const AddListForm = () => {
   }, [dispatch, items]);
 
   const handleListSubmit = (e) => {
-    setSubmitedListError(false);
+    setSubmitedListItemError(false);
+    setSubmitedListNameError(false);
     e.preventDefault();
     let listToCreate = {};
     // listToCreate.name = submitedListName;
@@ -48,12 +52,15 @@ const AddListForm = () => {
     listToCreate.publicationDate = publicationDate;
     listToCreate.items = items;
 
-    console.log(listToCreate);
-    console.log(submitedListName, items.length);
     if (submitedListName && items.length !== 0) {
       dispatch(createListRequest(listToCreate));
+    } else if (!submitedListName && items.length !== 0) {
+      setSubmitedListNameError(true);
+    } else if (items.length === 0 && submitedListName) {
+      setSubmitedListItemError(true);
     } else {
-      setSubmitedListError(true);
+      setSubmitedListNameError(true);
+      setSubmitedListItemError(true);
     }
   };
 
@@ -71,18 +78,23 @@ const AddListForm = () => {
       <Container>
         <ListNameForm
           subbmitedName={submitedListName}
-          action={setSubmitedListName}
+          setSubmitedListName={setSubmitedListName}
+          setSubmitedListNameError={setSubmitedListNameError}
         />
         <SwitchSystem action={handleSwitchSystem} system={system} />
         <ItemBar />
         {items.length !== 0 && (
           <ItemsList items={items} removeItem={handleItemRemove} />
         )}
-        <ItemsForm system={system} />
+        <ItemsForm
+          system={system}
+          setSubmitedListError={setSubmitedListItemError}
+        />
         <form onSubmit={(e) => handleListSubmit(e)}>
           <button type='submit'>Create List</button>
         </form>
-        {submitListError && <p>You need to add at least 1 item</p>}
+        {submitListNameError && <p>You need to add list name</p>}
+        {submitListItemError && <p>You need to add at least 1 item</p>}
       </Container>
     );
 };

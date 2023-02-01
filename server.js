@@ -57,7 +57,7 @@ const listsRoutes = require('./routes/lists.routes');
 const authRoutes = require('./routes/auth.routes');
 
 app.use('/api', listsRoutes);
-app.use('/api', authRoutes);
+app.use('/auth', authRoutes);
 
 app.use(express.static(path.join(__dirname, '/client/build')));
 app.use(express.static(path.join(__dirname, '/public')));

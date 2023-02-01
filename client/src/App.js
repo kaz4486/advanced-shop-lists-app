@@ -8,6 +8,7 @@ import AddList from './components/pages/AddList/AddList';
 import Home from './components/pages/Home/Home';
 import List from './components/pages/List/List';
 import Lists from './components/pages/Lists/Lists';
+import Register from './components/pages/Register/Register';
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Route path='lists/:id' element={<List />} />
         <Route path='list/ad' element={<AddList />} />
         <Route path='lists' element={<Lists />} />
+        <Route path='/register' element={<Register />} />
       </Routes>
     </MainLayout>
   );
