@@ -2,8 +2,6 @@ import { Container, Button } from 'react-bootstrap';
 import { Col, Row } from 'react-bootstrap';
 
 const ListItem = ({ item, removeAction }) => {
-  console.log(removeAction);
-  console.log(item);
   if (item)
     return (
       <Container key={item.name}>
@@ -14,14 +12,17 @@ const ListItem = ({ item, removeAction }) => {
           <Col xs={3}>
             <p>{item.amount}</p>
           </Col>
-          <Col xs={3}>
+          <Col xs={2}>
             <p>{item.unit}</p>
           </Col>
-          <Col xs={3}>
+          <Col xs={2}>
             <p>{item.volume}</p>
           </Col>
+
           {removeAction && (
-            <Button onClick={() => removeAction(item.id)}></Button>
+            <Col xs={2}>
+              <Button onClick={() => removeAction(item.id)}></Button>
+            </Col>
           )}
         </Row>
       </Container>

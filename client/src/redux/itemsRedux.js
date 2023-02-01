@@ -1,4 +1,4 @@
-import shortid from 'shortid';
+import { nanoid } from 'nanoid';
 
 // selectors
 
@@ -23,7 +23,7 @@ const itemsReducer = (statePart = [], action = {}) => {
     case LOAD_ITEMS:
       return { statePart };
     case ADD_ITEM:
-      return [...statePart, { ...action.payload, id: shortid() }];
+      return [...statePart, { ...action.payload, id: nanoid() }];
     case REMOVE_ITEM:
       return statePart.filter((item) => item.id !== action.payload);
     default:

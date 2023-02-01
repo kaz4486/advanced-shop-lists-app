@@ -1,10 +1,20 @@
-import { Container } from 'react-bootstrap';
+import { Container, Col, Row } from 'react-bootstrap';
 
 const Navbar = () => {
   return (
     <nav>
-      <a href='/'>Home</a>
-      <a href='/lists'>Lists</a>
+      <Row>
+        <Col xs={6}></Col>
+        <Col xs={2}>
+          <a href='/'>Home</a>
+        </Col>
+        <Col xs={2}>
+          <a href='/lists'>Lists</a>
+        </Col>
+        <Col xs={2}>
+          <a href='/register'>Register</a>
+        </Col>
+      </Row>
     </nav>
   );
 };

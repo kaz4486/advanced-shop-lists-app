@@ -12,9 +12,14 @@ const Register = () => {
 
     const userData = { login, password };
 
+    console.log(userData);
+
     const options = {
       method: 'post',
-      body: userData,
+      body: JSON.stringify(userData),
+      headers: {
+        'Content-Type': 'application/json',
+      },
     };
 
     setStatus('loading');

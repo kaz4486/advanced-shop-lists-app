@@ -10,6 +10,10 @@ export const getRequest = ({ lists }) => lists.request;
 export const getListById = ({ lists }, listId) =>
   lists.data.find((list) => list._id === listId);
 
+export const getListByInternalId = ({ lists }, internalId) => {
+  lists.data.find((list) => list.internalId === internalId);
+};
+
 //actions
 
 const reducerName = 'lists';
@@ -59,10 +63,6 @@ export const createListRequest = (data) => {
       let res = await axios.post(
         `${API_URL}/lists`,
         data,
-        {
-          retry: 3,
-          retryDelay: 100,
-        },
         { withCredentials: true },
         { headers: { 'Content-Type': 'application/json' } }
       );
