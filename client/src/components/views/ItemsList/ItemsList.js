@@ -3,7 +3,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { useEffect, useState } from 'react';
 import ListItem from '../../common/ListItem/ListItem';
 
-const ItemsList = ({ items }, removeItem) => {
+const ItemsList = ({ items, removeItem }) => {
   const [itemsState, setItemsState] = useState(null);
 
   useEffect(() => {

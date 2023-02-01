@@ -2,8 +2,13 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import itemsReducer from './itemsRedux';
 import listsReducer from './listsRedux';
+import usersReducer from './userRedux';
 
-const subreducers = { lists: listsReducer, items: itemsReducer };
+const subreducers = {
+  lists: listsReducer,
+  items: itemsReducer,
+  user: usersReducer,
+};
 
 const reducer = combineReducers(subreducers);
 

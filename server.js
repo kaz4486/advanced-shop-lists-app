@@ -54,13 +54,10 @@ app.use(
 );
 
 const listsRoutes = require('./routes/lists.routes');
-
-// app.post('/', function (req, res, next) {
-//   // echo body as JSON
-//   res.send(JSON.stringify(req.body));
-// });
+const authRoutes = require('./routes/auth.routes');
 
 app.use('/api', listsRoutes);
+app.use('/api', authRoutes);
 
 app.use(express.static(path.join(__dirname, '/client/build')));
 app.use(express.static(path.join(__dirname, '/public')));

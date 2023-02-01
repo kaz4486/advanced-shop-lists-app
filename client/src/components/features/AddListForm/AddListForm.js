@@ -1,19 +1,16 @@
 import { useEffect, useState } from 'react';
 import { Container, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { getItems, loadItems, removeItem } from '../../../redux/itemsRedux';
+import { getItems, removeItem } from '../../../redux/itemsRedux';
 import {
   createListRequest,
-  getListById,
   getRequest,
   loadListsRequest,
 } from '../../../redux/listsRedux';
 import ItemBar from '../../common/ItemBar/ItemBar';
 import ItemsForm from '../../common/ItemsForm/ItemsForm.tsx';
-
 import { Alert } from 'react-bootstrap';
 import SwitchSystem from '../SwitchSystem/SwitchSystem';
-
 import ListNameForm from '../../common/ListNameForm/ListNameForm';
 import ItemsList from '../../views/ItemsList/ItemsList';
 import createPublicationDate from '../../../utils/createPublicationDate';

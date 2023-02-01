@@ -1,9 +1,9 @@
 import { Container, Button } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-import { getListById } from '../../../redux/listsRedux';
 import { Col, Row } from 'react-bootstrap';
 
 const ListItem = ({ item, removeAction }) => {
+  console.log(removeAction);
+  console.log(item);
   if (item)
     return (
       <Container key={item.name}>
