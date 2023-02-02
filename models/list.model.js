@@ -5,6 +5,7 @@ const listSchema = new mongoose.Schema({
   // user: { type: String, required: true, ref: 'User' },
   items: { type: Array, required: true },
   publicationDate: { type: String, required: true },
+  // internalId: { type: String, required: true },
 });
 
 module.exports = mongoose.model('List', listSchema);

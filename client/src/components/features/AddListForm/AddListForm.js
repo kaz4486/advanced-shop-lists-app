@@ -1,11 +1,9 @@
-import { useEffect, useState } from 'react';
-import { Container, Spinner } from 'react-bootstrap';
+import React, { useEffect, useRef, useState } from 'react';
+import { Button, Container, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { getItems, removeItem } from '../../../redux/itemsRedux';
 import {
   createListRequest,
-  getListByInternalId,
-  getLists,
   getRequest,
   loadListsRequest,
 } from '../../../redux/listsRedux';
@@ -16,13 +14,18 @@ import SwitchSystem from '../SwitchSystem/SwitchSystem';
 import ListNameForm from '../../common/ListNameForm/ListNameForm';
 import ItemsList from '../../views/ItemsList/ItemsList';
 import createPublicationDate from '../../../utils/createPublicationDate';
-// import { nanoid } from 'nanoid';
+import ReactToPrint, { useReactToPrint } from 'react-to-print';
 
 const AddListForm = () => {
   const dispatch = useDispatch();
   const items = useSelector(getItems);
   const request = useSelector(getRequest);
   // const lists = useSelector(getLists);
+
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
 
   const [system, setSystem] = useState('metric');
   const [submitedListName, setSubmitedListName] = useState(null);
@@ -49,14 +52,17 @@ const AddListForm = () => {
   // );
   // console.log(createdList);
 
-  const Print = () => {
-    //console.log('print');
-    let printContents = document.getElementById('printablediv').innerHTML;
-    let originalContents = document.body.innerHTML;
-    document.body.innerHTML = printContents;
-    window.print();
-    document.body.innerHTML = originalContents;
-  };
+  // const Print = (e) => {
+  //   e.preventDefault();
+  //   //console.log('print');
+  //   let printContents = document.getElementById('printablediv').innerHTML;
+  //   let originalContents = document.body.innerHTML;
+  //   document.body.innerHTML = printContents;
+  //   console.log(document.body.innerHTML);
+  //   window.print();
+  //   document.body.innerHTML = originalContents;
+  //   console.log(document.body.innerHTML);
+  // };
 
   const handleListSubmit = (e) => {
     e.preventDefault();
@@ -105,13 +111,20 @@ const AddListForm = () => {
         <SwitchSystem action={handleSwitchSystem} system={system} />
         <ItemBar />
         {items.length !== 0 && (
-          <section id='printablediv'>
-            <ItemsList items={items} removeItem={handleItemRemove} />
-          </section>
+          <div>
+            <ItemsList
+              ref={componentRef}
+              items={items}
+              removeItem={handleItemRemove}
+            />
+
+            <button onClick={handlePrint}>Print list</button>
+          </div>
         )}
-        <button type='button' onClick={Print}>
+
+        {/* <button type='button' onClick={(e) => Print(e)}>
           Print your list
-        </button>
+        </button> */}
         <ItemsForm
           system={system}
           setSubmitedListError={setSubmitedListItemError}

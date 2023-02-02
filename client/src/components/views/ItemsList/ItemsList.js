@@ -1,9 +1,9 @@
 import { Container } from 'react-bootstrap';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { useEffect, useState } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 import ListItem from '../../common/ListItem/ListItem';
 
-const ItemsList = ({ items, removeItem }) => {
+const ItemsList = forwardRef(({ items, removeItem }, ref) => {
   const [itemsState, setItemsState] = useState(null);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const ItemsList = ({ items, removeItem }) => {
   };
 
   return (
-    <Container>
+    <Container ref={ref}>
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId='items'>
           {(provided) => (
@@ -58,6 +58,6 @@ const ItemsList = ({ items, removeItem }) => {
       </DragDropContext>
     </Container>
   );
-};
+});
 
 export default ItemsList;

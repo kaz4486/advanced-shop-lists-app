@@ -14,7 +14,6 @@ exports.getAll = async (req, res) => {
 exports.post = async (req, res) => {
   console.log('reqbody', req.body);
   const { name, publicationDate, items } = req.body;
-  console.log(items.length);
 
   try {
     if (
@@ -27,6 +26,7 @@ exports.post = async (req, res) => {
         name,
         publicationDate,
         items,
+        // internalId,
       });
       return res.status(201).send({ message: 'New List Added' + newList });
     }
