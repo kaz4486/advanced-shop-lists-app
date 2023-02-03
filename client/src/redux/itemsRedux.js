@@ -13,10 +13,15 @@ const createActionName = (actionName) => `app/${reducerName}/${actionName}`;
 const LOAD_ITEMS = createActionName('LOAD_ITEMS');
 const ADD_ITEM = createActionName('ADD_ITEM');
 const REMOVE_ITEM = createActionName('REMOVE_ITEM');
+const REMOVE_ALL_ITEMS = createActionName('REMOVE_ALL_ITEMS');
 
 export const loadItems = (payload) => ({ type: LOAD_ITEMS, payload });
 export const addItem = (payload) => ({ type: ADD_ITEM, payload });
 export const removeItem = (payload) => ({ type: REMOVE_ITEM, payload });
+export const removeAllItems = (payload) => ({
+  type: REMOVE_ALL_ITEMS,
+  payload,
+});
 
 const itemsReducer = (statePart = [], action = {}) => {
   switch (action.type) {
@@ -26,6 +31,8 @@ const itemsReducer = (statePart = [], action = {}) => {
       return [...statePart, { ...action.payload, id: nanoid() }];
     case REMOVE_ITEM:
       return statePart.filter((item) => item.id !== action.payload);
+    case REMOVE_ALL_ITEMS:
+      return [];
     default:
       return statePart;
   }

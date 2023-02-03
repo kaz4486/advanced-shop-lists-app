@@ -40,6 +40,7 @@ exports.login = async (req, res) => {
       if (bcrypt.compareSync(password, user.password)) {
         const userData = { login: user.login, id: user._id };
         req.session.user = userData;
+        console.log(req.session.user.login);
         return res.status(200).send({ message: 'Login succesful' });
       }
       return res
@@ -53,7 +54,11 @@ exports.login = async (req, res) => {
 };
 
 exports.getUser = async (req, res) => {
-  return res.send("Yeah! I'm logged");
+  try {
+    return res.status(200).json(await User.find());
+  } catch (err) {
+    return res.status(500).send({ message: err.message });
+  }
 };
 
 exports.deleteSession = async (req, res) => {

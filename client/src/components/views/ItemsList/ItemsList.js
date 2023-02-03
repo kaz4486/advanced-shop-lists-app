@@ -2,6 +2,7 @@ import { Container } from 'react-bootstrap';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { forwardRef, useEffect, useState } from 'react';
 import ListItem from '../../common/ListItem/ListItem';
+import { getPageMargins } from '../../../utils/printPageMargin';
 
 const ItemsList = forwardRef(({ items, removeItem }, ref) => {
   const [itemsState, setItemsState] = useState(null);
@@ -23,6 +24,7 @@ const ItemsList = forwardRef(({ items, removeItem }, ref) => {
 
   return (
     <Container ref={ref}>
+      <style>{getPageMargins()}</style>
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId='items'>
           {(provided) => (

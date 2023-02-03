@@ -1,5 +1,5 @@
 //selectors
-export const getUser = ({ users }) => users;
+export const getUser = ({ user }) => user;
 
 /* ACTIONS */
 

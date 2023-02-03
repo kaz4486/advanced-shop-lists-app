@@ -1,7 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Button, Container, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { getItems, removeItem } from '../../../redux/itemsRedux';
+import {
+  getItems,
+  removeAllItems,
+  removeItem,
+} from '../../../redux/itemsRedux';
 import {
   createListRequest,
   getRequest,
@@ -14,13 +18,12 @@ import SwitchSystem from '../SwitchSystem/SwitchSystem';
 import ListNameForm from '../../common/ListNameForm/ListNameForm';
 import ItemsList from '../../views/ItemsList/ItemsList';
 import createPublicationDate from '../../../utils/createPublicationDate';
-import ReactToPrint, { useReactToPrint } from 'react-to-print';
+import { useReactToPrint } from 'react-to-print';
 
 const AddListForm = () => {
   const dispatch = useDispatch();
   const items = useSelector(getItems);
   const request = useSelector(getRequest);
-  // const lists = useSelector(getLists);
 
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
@@ -32,8 +35,6 @@ const AddListForm = () => {
 
   const [submitListNameError, setSubmitedListNameError] = useState(false);
   const [submitListItemError, setSubmitedListItemError] = useState(false);
-
-  // const [internalListId, setInternalListId] = useState('');
 
   const handleSwitchSystem = () => {
     system === 'metric' ? setSystem('imperial') : setSystem('metric');
@@ -47,26 +48,7 @@ const AddListForm = () => {
     dispatch(loadListsRequest());
   }, [dispatch]);
 
-  // const createdList = useSelector((state) =>
-  //   getListByInternalId(state, internalListId)
-  // );
-  // console.log(createdList);
-
-  // const Print = (e) => {
-  //   e.preventDefault();
-  //   //console.log('print');
-  //   let printContents = document.getElementById('printablediv').innerHTML;
-  //   let originalContents = document.body.innerHTML;
-  //   document.body.innerHTML = printContents;
-  //   console.log(document.body.innerHTML);
-  //   window.print();
-  //   document.body.innerHTML = originalContents;
-  //   console.log(document.body.innerHTML);
-  // };
-
-  const handleListSubmit = (e) => {
-    e.preventDefault();
-    // setInternalListId(nanoid());
+  const handleListSubmit = () => {
     setSubmitedListItemError(false);
     setSubmitedListNameError(false);
     let listToCreate = {};
@@ -75,9 +57,6 @@ const AddListForm = () => {
     listToCreate.name = submitedListName;
     listToCreate.publicationDate = publicationDate;
     listToCreate.items = items;
-
-    // listToCreate.internalId = internalListId;
-    // console.log(listToCreate.internalId);
 
     if (submitedListName && items.length !== 0) {
       dispatch(createListRequest(listToCreate));
@@ -89,6 +68,10 @@ const AddListForm = () => {
       setSubmitedListNameError(true);
       setSubmitedListItemError(true);
     }
+  };
+
+  const handleRemoveList = () => {
+    dispatch(removeAllItems());
   };
 
   if (request.pending)
@@ -122,16 +105,16 @@ const AddListForm = () => {
           </div>
         )}
 
-        {/* <button type='button' onClick={(e) => Print(e)}>
-          Print your list
-        </button> */}
         <ItemsForm
           system={system}
           setSubmitedListError={setSubmitedListItemError}
         />
-        <form onSubmit={(e) => handleListSubmit(e)}>
+        <form onSubmit={handleListSubmit}>
           <button type='submit'>Create List</button>
         </form>
+        <button type='button' onClick={handleRemoveList}>
+          Reset list
+        </button>
         {submitListNameError && <p>You need to add list name</p>}
         {submitListItemError && <p>You need to add at least 1 item</p>}
       </Container>
