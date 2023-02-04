@@ -10,9 +10,9 @@ export const getRequest = ({ lists }) => lists.request;
 export const getListById = ({ lists }, listId) =>
   lists.data.find((list) => list._id === listId);
 
-export const getListByInternalId = ({ lists }, internalId) => {
-  lists.data.find((list) => list.internalId === internalId);
-};
+export // export const getListByInternalId = ({ lists }, internalId) => {
+//   lists.data.find((list) => list.internalId === internalId);
+// };
 
 //actions
 

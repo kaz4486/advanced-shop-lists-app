@@ -1,10 +1,9 @@
-import { Container, Col, Row } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { getUser } from '../../../redux/userRedux';
 
 const Navbar = () => {
   const user = useSelector((state) => getUser(state));
-  console.log(user);
 
   return (
     <nav>

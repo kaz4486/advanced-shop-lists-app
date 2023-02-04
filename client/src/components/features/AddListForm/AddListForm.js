@@ -19,11 +19,14 @@ import ListNameForm from '../../common/ListNameForm/ListNameForm';
 import ItemsList from '../../views/ItemsList/ItemsList';
 import createPublicationDate from '../../../utils/createPublicationDate';
 import { useReactToPrint } from 'react-to-print';
+import { getUser } from '../../../redux/userRedux';
 
 const AddListForm = () => {
   const dispatch = useDispatch();
   const items = useSelector(getItems);
   const request = useSelector(getRequest);
+  const user = useSelector(getUser);
+  console.log(user);
 
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
@@ -57,6 +60,8 @@ const AddListForm = () => {
     listToCreate.name = submitedListName;
     listToCreate.publicationDate = publicationDate;
     listToCreate.items = items;
+    listToCreate.user = user._id;
+    console.log(listToCreate);
 
     if (submitedListName && items.length !== 0) {
       dispatch(createListRequest(listToCreate));
@@ -70,7 +75,7 @@ const AddListForm = () => {
     }
   };
 
-  const handleRemoveList = () => {
+  const handleResetList = () => {
     dispatch(removeAllItems());
   };
 
@@ -110,9 +115,11 @@ const AddListForm = () => {
           setSubmitedListError={setSubmitedListItemError}
         />
         <form onSubmit={handleListSubmit}>
-          <button type='submit'>Create List</button>
+          <button type='submit' disabled={user !== null ? false : true}>
+            Add to My Lists
+          </button>
         </form>
-        <button type='button' onClick={handleRemoveList}>
+        <button type='button' onClick={handleResetList}>
           Reset list
         </button>
         {submitListNameError && <p>You need to add list name</p>}
