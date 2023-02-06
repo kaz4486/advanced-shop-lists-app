@@ -33,7 +33,7 @@ const Login = () => {
       .then((res) => {
         if (res.status === 200) {
           setStatus('success');
-          dispatch(logIn({ login }));
+          dispatch(logIn(login));
 
           localStorage.setItem('user', JSON.stringify(user.login));
           console.log({ login, password });

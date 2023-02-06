@@ -4,7 +4,6 @@ const isString = require('../utils/validators/isString');
 
 exports.registration = async (req, res) => {
   const { login, password } = req.body;
-  console.log(req.body);
   try {
     if (isString(login) && isString(password)) {
       const userWithLogin = await User.findOne({ login });

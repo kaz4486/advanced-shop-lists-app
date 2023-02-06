@@ -1,11 +1,14 @@
 import { Button } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { getUser } from '../../../redux/userRedux';
 
 const Home = () => {
   const navigate = useNavigate();
+  const user = useSelector(getUser);
 
   const handleButtonClick = () => {
-    navigate('/lists');
+    navigate(`/lists`);
   };
 
   return (

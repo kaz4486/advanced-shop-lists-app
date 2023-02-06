@@ -13,7 +13,7 @@ const Navbar = () => {
           <a href='/'>Home</a>
         </Col>
         <Col xs={2}>
-          <a href='/lists'>Lists</a>
+          <a href={`/lists`}>Lists</a>
         </Col>
         <Col xs={2}>
           <a href='/register'>Register</a>

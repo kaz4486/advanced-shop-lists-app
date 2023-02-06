@@ -26,7 +26,6 @@ const AddListForm = () => {
   const items = useSelector(getItems);
   const request = useSelector(getRequest);
   const user = useSelector(getUser);
-  console.log(user);
 
   const componentRef = useRef();
   const handlePrint = useReactToPrint({

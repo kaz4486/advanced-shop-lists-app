@@ -4,8 +4,17 @@ const isString = require('../utils/validators/isString');
 
 exports.getAll = async (req, res) => {
   try {
-    // return res.json(await List.find());
     return res.json(await List.find().populate('user'));
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+};
+
+exports.getListsByUser = async (req, res) => {
+  try {
+    const user = await User.findOne({ login: req.params.user });
+    const lists = await List.find({ user: user._id });
+    return res.json(lists);
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
