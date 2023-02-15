@@ -46,6 +46,9 @@ const Lists = () => {
   if (!request.success)
     return <Alert color='info'>Something went wrong...</Alert>;
   // if (lists.length === 0) return <Navigate to='/' />;
+  if (request.success && lists.length === 0) {
+    return <Alert color='info'>You don't have any saved lists</Alert>;
+  }
   if (request.success)
     return (
       <Container>

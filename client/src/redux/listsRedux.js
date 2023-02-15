@@ -94,6 +94,26 @@ export const createListRequest = (data) => {
   };
 };
 
+export const editListRequest = (data, id) => {
+  console.log(data, id);
+  return async (dispatch) => {
+    dispatch(startRequest({ name: EDIT_LIST }));
+    try {
+      let res = await axios.patch(
+        `${API_URL}/lists/${id}`,
+        { name: data.name, items: data.items, user: data.user },
+        { withCredentials: true },
+        { headers: { 'Content-Type': 'application/json' } }
+      );
+      console.log(res.data.modifiedList);
+      dispatch(editList(res.data.modifiedList));
+      dispatch(endRequest({ name: EDIT_LIST }));
+    } catch (e) {
+      dispatch(errorRequest({ name: EDIT_LIST, error: e.message }));
+    }
+  };
+};
+
 const initialState = {
   data: [],
   request: { pending: false, error: null, success: null },
@@ -105,6 +125,23 @@ const listsReducer = (statePart = initialState, action = {}) => {
       return { ...statePart, data: [...action.payload] };
     case CREATE_LIST:
       return { ...statePart, data: [...statePart.data, action.payload] };
+    case EDIT_LIST:
+      return {
+        ...statePart,
+        data: [
+          statePart.data.map((list) =>
+            list._id === action.payload._id
+              ? { ...list, ...action.payload }
+              : list
+          ),
+        ],
+      };
+    case REMOVE_LIST:
+      return {
+        ...statePart,
+        data: statePart.data.filter((list) => list._id !== action.payload._id),
+      };
+
     case START_REQUEST:
       return {
         ...statePart,

@@ -3,6 +3,7 @@ import { Button, Container, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getItems,
+  loadItems,
   removeAllItems,
   removeItem,
 } from '../../../redux/itemsRedux';
@@ -17,26 +18,35 @@ import { Alert } from 'react-bootstrap';
 import SwitchSystem from '../SwitchSystem/SwitchSystem';
 import ListNameForm from '../../common/ListNameForm/ListNameForm';
 import ItemsList from '../../views/ItemsList/ItemsList';
-import createPublicationDate from '../../../utils/createPublicationDate';
+
 import { useReactToPrint } from 'react-to-print';
 import { getUser } from '../../../redux/userRedux';
 
-const AddListForm = () => {
+const ListForm = ({
+  submitedListName,
+  submitListNameError,
+  submitListItemError,
+  setSubmitedListName,
+  setSubmitedListItemError,
+  setSubmitedListNameError,
+  handleListSubmit,
+  user,
+  setItems,
+  buttonName,
+  items,
+  id,
+}) => {
   const dispatch = useDispatch();
-  const items = useSelector(getItems);
-  const request = useSelector(getRequest);
-  const user = useSelector(getUser);
 
+  const request = useSelector(getRequest);
+  // const user = useSelector(getUser);
+  console.log(items);
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
   });
 
   const [system, setSystem] = useState('metric');
-  const [submitedListName, setSubmitedListName] = useState(null);
-
-  const [submitListNameError, setSubmitedListNameError] = useState(false);
-  const [submitListItemError, setSubmitedListItemError] = useState(false);
 
   const handleSwitchSystem = () => {
     system === 'metric' ? setSystem('imperial') : setSystem('metric');
@@ -48,31 +58,8 @@ const AddListForm = () => {
 
   useEffect(() => {
     dispatch(loadListsRequest());
+    dispatch(loadItems);
   }, [dispatch]);
-
-  const handleListSubmit = () => {
-    setSubmitedListItemError(false);
-    setSubmitedListNameError(false);
-    let listToCreate = {};
-
-    const publicationDate = createPublicationDate();
-    listToCreate.name = submitedListName;
-    listToCreate.publicationDate = publicationDate;
-    listToCreate.items = items;
-    listToCreate.user = user._id;
-    console.log(listToCreate);
-
-    if (submitedListName && items.length !== 0) {
-      dispatch(createListRequest(listToCreate));
-    } else if (!submitedListName && items.length !== 0) {
-      setSubmitedListNameError(true);
-    } else if (items.length === 0 && submitedListName) {
-      setSubmitedListItemError(true);
-    } else {
-      setSubmitedListNameError(true);
-      setSubmitedListItemError(true);
-    }
-  };
 
   const handleResetList = () => {
     dispatch(removeAllItems());
@@ -112,10 +99,12 @@ const AddListForm = () => {
         <ItemsForm
           system={system}
           setSubmitedListError={setSubmitedListItemError}
+          // setItems={setItems}
+          id={id}
         />
-        <form onSubmit={handleListSubmit}>
+        <form onSubmit={(e) => handleListSubmit(e)}>
           <button type='submit' disabled={user !== null ? false : true}>
-            Add to My Lists
+            {buttonName}
           </button>
         </form>
         <button type='button' onClick={handleResetList}>
@@ -127,4 +116,4 @@ const AddListForm = () => {
     );
 };
 
-export default AddListForm;
+export default ListForm;

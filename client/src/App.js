@@ -14,6 +14,7 @@ import Logout from './components/pages/LogOut/LogOut';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { logIn } from './redux/userRedux';
+import EditList from './components/pages/EditList/EditList';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ const App = () => {
         <Route path='/' element={<Home />} />
         <Route path='lists/:id' element={<List />} />
         <Route path='list/ad' element={<AddList />} />
+        <Route path='lists/edit/:id' element={<EditList />} />
         <Route path='lists' element={<Lists />} />
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login />} />

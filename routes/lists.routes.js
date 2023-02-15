@@ -13,6 +13,8 @@ router.get('/lists/:user', ListsController.getListsByUser);
 
 router.post('/lists', ListsController.post);
 
+router.patch('/lists/:id', ListsController.patch);
+
 // router.put('/lists/:id', (req, res) => {
 //   const { firstName, lastName } = req.body;
 //   db = db.employees.map((item) =>

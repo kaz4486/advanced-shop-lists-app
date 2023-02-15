@@ -5,6 +5,7 @@ import ListItem from '../../common/ListItem/ListItem';
 import { getPageMargins } from '../../../utils/printPageMargin';
 
 const ItemsList = forwardRef(({ items, removeItem }, ref) => {
+  console.log(items);
   const [itemsState, setItemsState] = useState(null);
 
   useEffect(() => {

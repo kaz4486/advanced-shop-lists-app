@@ -4,7 +4,7 @@ import { useForm, useFieldArray, useWatch, Controller } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from '../../../redux/itemsRedux';
 
-const ItemsForm = ({ system, setSubmitedListError }) => {
+const ItemsForm = ({ system, setSubmitedListError, id }) => {
   const dispatch = useDispatch();
 
   type FormValues = {
@@ -38,6 +38,7 @@ const ItemsForm = ({ system, setSubmitedListError }) => {
   const onItemSubmit = ({ ...data }: FormValues) => {
     setSubmitedListError(false);
     data.item.forEach((element) => dispatch(addItem({ ...element })));
+    // dispatch(edi)
   };
 
   const ConditionallInput = ({ control, index, field }) => {
