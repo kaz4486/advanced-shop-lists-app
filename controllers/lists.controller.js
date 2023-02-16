@@ -51,9 +51,7 @@ exports.post = async (req, res) => {
 
 exports.patch = async (req, res) => {
   const { name, items, user } = req.body;
-  // const user = req.session.user;
-  console.log(user);
-  console.log('tu');
+
   try {
     const list = await List.findOne({ _id: req.params.id });
     console.log(list);
@@ -110,5 +108,24 @@ exports.patch = async (req, res) => {
     return res.status(400).send({ message: 'Bad request' });
   } catch (err) {
     return res.status(500).send({ message: err.message });
+  }
+};
+
+exports.delete = async (req, res) => {
+  try {
+    const list = await List.findOne({ _id: req.params.id });
+
+    const foundUser = await User.findOne({ login: req.session.user.login });
+    console.log(foundUser);
+    if (list.user != foundUser._id) {
+      return res.status(400).send({ message: 'Bad request' });
+    }
+    if (list) {
+      await list.deleteOne({ _id: req.params.id });
+      return res.json({ message: 'List removed', removedList: list });
+    }
+    return res.status(404).json({ message: 'Not found' });
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
   }
 };

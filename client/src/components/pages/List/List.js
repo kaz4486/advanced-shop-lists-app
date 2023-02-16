@@ -1,30 +1,35 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, Navigate, Link } from 'react-router-dom';
+import { useParams, Navigate, Link, useNavigate } from 'react-router-dom';
 import {
   getListById,
   getRequest,
   loadListsRequest,
   removeList,
+  removeListRequest,
 } from '../../../redux/listsRedux';
 import Spinner from 'react-bootstrap/Spinner';
 import { Alert, Row, Col, Container, Button } from 'react-bootstrap';
 import ItemBar from '../../common/ItemBar/ItemBar';
 import ListItem from '../../common/ListItem/ListItem';
+import { getUser } from '../../../redux/userRedux';
 
 const List = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const list = useSelector((state) => getListById(state, id));
   const request = useSelector(getRequest);
+  const user = useSelector(getUser);
 
   useEffect(() => {
     dispatch(loadListsRequest());
   }, [dispatch]);
 
-  const handleRemoveList = (list) => {
-    dispatch(removeList(list));
+  const handleRemoveList = () => {
+    dispatch(removeListRequest(id, user));
+    navigate('/');
   };
 
   if (request.pending)
@@ -49,7 +54,7 @@ const List = () => {
           <Button>edit</Button>
         </Link>
 
-        <Button onClick={() => handleRemoveList(list)}>remove</Button>
+        <Button onClick={handleRemoveList}>remove</Button>
       </div>
     );
 };

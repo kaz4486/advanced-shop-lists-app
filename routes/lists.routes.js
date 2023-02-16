@@ -15,6 +15,8 @@ router.post('/lists', ListsController.post);
 
 router.patch('/lists/:id', ListsController.patch);
 
+router.delete('/lists/:id', ListsController.delete);
+
 // router.put('/lists/:id', (req, res) => {
 //   const { firstName, lastName } = req.body;
 //   db = db.employees.map((item) =>

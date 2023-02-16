@@ -114,6 +114,25 @@ export const editListRequest = (data, id) => {
   };
 };
 
+export const removeListRequest = (id) => {
+  return async (dispatch) => {
+    dispatch(startRequest({ name: REMOVE_LIST }));
+    try {
+      await axios.delete(
+        `${API_URL}/lists/${id}`,
+        { withCredentials: true },
+        {
+          headers: { 'Content-Type': 'application/json' },
+        }
+      );
+      await dispatch(removeList(id));
+      dispatch(endRequest({ name: REMOVE_LIST }));
+    } catch (e) {
+      dispatch(errorRequest({ name: REMOVE_LIST, error: e.message }));
+    }
+  };
+};
+
 const initialState = {
   data: [],
   request: { pending: false, error: null, success: null },
