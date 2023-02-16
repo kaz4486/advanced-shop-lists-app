@@ -5,6 +5,7 @@ import { createListRequest } from '../../../redux/listsRedux';
 import { useState } from 'react';
 import { getItems } from '../../../redux/itemsRedux';
 import { getUser } from '../../../redux/userRedux';
+import { Button, Modal } from 'react-bootstrap';
 
 const AddList = () => {
   const dispatch = useDispatch();
@@ -13,6 +14,11 @@ const AddList = () => {
 
   const items = useSelector(getItems);
   const user = useSelector(getUser);
+
+  const [showModal, setShowModal] = useState(false);
+
+  const handleClose = () => setShowModal(false);
+  // const handleShow = () => setShowModal(true);
 
   const [submitedListName, setSubmitedListName] = useState(null);
 
@@ -34,6 +40,7 @@ const AddList = () => {
 
     if (submitedListName && items.length !== 0) {
       dispatch(createListRequest(listToCreate));
+      setShowModal(true);
     } else if (!submitedListName && items.length !== 0) {
       setSubmitedListNameError(true);
     } else if (items.length === 0 && submitedListName) {
@@ -45,6 +52,8 @@ const AddList = () => {
 
     /// create new or print?
   };
+
+  //return różne warianty
 
   return (
     <div>
@@ -60,6 +69,9 @@ const AddList = () => {
         items={items}
         user={user}
         buttonName='Add to my lists'
+        showModal={showModal}
+        // setShowModal={setShowModal}
+        handleClose={handleClose}
       />
     </div>
   );

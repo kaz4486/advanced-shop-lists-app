@@ -1,17 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Button, Container, Spinner } from 'react-bootstrap';
+import { Button, Container, Modal, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  getItems,
   loadItems,
   removeAllItems,
   removeItem,
 } from '../../../redux/itemsRedux';
-import {
-  createListRequest,
-  getRequest,
-  loadListsRequest,
-} from '../../../redux/listsRedux';
+import { getRequest, loadListsRequest } from '../../../redux/listsRedux';
 import ItemBar from '../../common/ItemBar/ItemBar';
 import ItemsForm from '../../common/ItemsForm/ItemsForm.tsx';
 import { Alert } from 'react-bootstrap';
@@ -20,7 +15,7 @@ import ListNameForm from '../../common/ListNameForm/ListNameForm';
 import ItemsList from '../../views/ItemsList/ItemsList';
 
 import { useReactToPrint } from 'react-to-print';
-import { getUser } from '../../../redux/userRedux';
+import { useNavigate } from 'react-router-dom';
 
 const ListForm = ({
   submitedListName,
@@ -31,16 +26,19 @@ const ListForm = ({
   setSubmitedListNameError,
   handleListSubmit,
   user,
-  setItems,
   buttonName,
   items,
   id,
+  showModal,
+  handleClose,
 }) => {
   const dispatch = useDispatch();
 
   const request = useSelector(getRequest);
   // const user = useSelector(getUser);
-  console.log(items);
+
+  const navigate = useNavigate();
+
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
@@ -61,8 +59,14 @@ const ListForm = ({
     dispatch(loadItems);
   }, [dispatch]);
 
-  const handleResetList = () => {
+  const handleResetListItems = () => {
     dispatch(removeAllItems());
+  };
+
+  const handleCreateNewList = () => {
+    handleResetListItems();
+    setSubmitedListName('');
+    handleClose();
   };
 
   if (request.pending)
@@ -99,7 +103,6 @@ const ListForm = ({
         <ItemsForm
           system={system}
           setSubmitedListError={setSubmitedListItemError}
-          // setItems={setItems}
           id={id}
         />
         <form onSubmit={(e) => handleListSubmit(e)}>
@@ -107,11 +110,28 @@ const ListForm = ({
             {buttonName}
           </button>
         </form>
-        <button type='button' onClick={handleResetList}>
+        <button type='button' onClick={handleResetListItems}>
           Reset list
         </button>
         {submitListNameError && <p>You need to add list name</p>}
         {submitListItemError && <p>You need to add at least 1 item</p>}
+        <Modal show={showModal} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Your list was succesfully added</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>What do you want to do now?</Modal.Body>
+          <Modal.Footer>
+            <Button variant='secondary' onClick={handlePrint}>
+              Print that list
+            </Button>
+            <Button variant='danger' onClick={handleCreateNewList}>
+              Add new list
+            </Button>
+            <Button variant='danger' onClick={() => navigate('/')}>
+              Back to Home
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </Container>
     );
 };
