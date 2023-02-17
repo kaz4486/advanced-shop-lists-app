@@ -1,7 +1,27 @@
 @import './settings.scss';
+@import url('https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@100;300;400;800;900&display=swap');
 
-// czcionki
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-// body{
-//     font-family: ;
-// }
+body {
+  margin: 0;
+  padding: 0;
+  color: $color-medium-green;
+  background: $color-white-background;
+  font-family: $font-text;
+  font-size: ($base-size * 1.3);
+  line-height: 1.7;
+  letter-spacing: 0.5px;
+  overflow-y: scroll;
+  min-height: 100vh;
+}
+
+a,
+a:hover,
+a:visited {
+  text-decoration: none;
+}

@@ -1,11 +1,11 @@
 import Navbar from '../../views/Navbar/Navbar';
+import styles from './Header.module.scss';
 
 const Header = () => {
   return (
-    <main>
-      <p>header</p>
+    <section className={styles.header}>
       <Navbar />
-    </main>
+    </section>
   );
 };
 
