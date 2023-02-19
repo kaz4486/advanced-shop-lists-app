@@ -6,7 +6,8 @@ const MainLayout = ({ children }) => {
   return (
     <div>
       <Header />
-      <Container>{children}</Container>
+      <div>{children}</div>
+      <p>dasds</p>
       <Footer />
     </div>
   );

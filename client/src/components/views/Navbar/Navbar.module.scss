@@ -1,19 +1,27 @@
 @import '../../../styles/settings.scss';
 
+.button {
+  color: $color-white-background;
+  font-family: $font-text;
+  p {
+    margin: 0;
+  }
+}
+
 .large_menu_classname {
   background-color: $color-dark-green;
   ul {
     list-style-type: none;
+    margin: 7px 0;
 
     li {
       display: inline;
       margin-right: 2rem;
-
       opacity: 1;
 
       a {
         text-decoration: none;
-
+        padding-bottom: 5px;
         position: relative;
 
         &::after {
@@ -29,7 +37,6 @@
           transition: $transition;
         }
         &:hover {
-          opacity: 1;
           &::after {
             transform: translateX(-50%) scaleX(2);
           }
@@ -39,28 +46,10 @@
           right: 0;
           top: 0;
           text-align: center;
-          padding-top: 15px;
+          padding-top: 20px;
+
           transition: $transition;
           color: $color-light-green;
-          // color: #fff;
-          //   &::after {
-          //     content: '';
-          //     position: absolute;
-          //     height: 3px;
-          //     bottom: 3px;
-          //     left: 50%;
-          //     width: 40%;
-          //     background: #f8b047;
-          //     transform: translateX(-50%) scaleX(0);
-          //     border-bottom: 3px solid $color-white-background;
-          //     // transition: $transition;
-          //   }
-          &:hover {
-            color: $color-white-background;
-          }
-          &::after {
-            opacity: 1;
-          }
         }
 
         // &:hover {
@@ -69,6 +58,53 @@
 
         //   transition: $transition;
         // }
+      }
+    }
+  }
+}
+
+.small_menu_classname {
+  background-color: $color-dark-green;
+  ul {
+    list-style-type: none;
+
+    li {
+      margin-right: 2rem;
+      opacity: 1;
+      margin-top: 1rem;
+
+      a {
+        text-decoration: none;
+        padding-bottom: 5px;
+        position: relative;
+
+        &::after {
+          content: '';
+          position: absolute;
+          height: 3px;
+          bottom: 3px;
+          left: 50%;
+          width: 40%;
+          color: $color-white-background;
+          border-bottom: 3px solid $color-white-background;
+          transform: translateX(-50%) scaleX(0);
+          transition: $transition;
+        }
+        &:hover {
+          &::after {
+            transform: translateX(-50%) scaleX(2);
+          }
+        }
+        span {
+          left: 0;
+          right: 0;
+          top: 0;
+          text-align: center;
+          padding-top: 20px;
+
+          transition: $transition;
+          color: $color-light-green;
+        }
       }
     }
   }

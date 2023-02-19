@@ -1,5 +1,5 @@
-import { Button } from 'react-bootstrap';
 import clsx from 'clsx';
+import Button from '../../common/Button/Button';
 
 const SwitchSystem = ({ action, system }) => {
   return (

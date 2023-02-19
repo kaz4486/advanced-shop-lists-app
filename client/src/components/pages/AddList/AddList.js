@@ -5,7 +5,8 @@ import { createListRequest } from '../../../redux/listsRedux';
 import { useState } from 'react';
 import { getItems } from '../../../redux/itemsRedux';
 import { getUser } from '../../../redux/userRedux';
-import { Button, Modal } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
+import styles from './AddList.module.scss';
 
 const AddList = () => {
   const dispatch = useDispatch();
@@ -57,22 +58,34 @@ const AddList = () => {
 
   return (
     <div>
-      <h1>Add list</h1>
-      <ListForm
-        submitedListName={submitedListName}
-        submitListNameError={submitListNameError}
-        submitListItemError={submitListItemError}
-        setSubmitedListName={setSubmitedListName}
-        setSubmitedListItemError={setSubmitedListItemError}
-        setSubmitedListNameError={setSubmitedListNameError}
-        handleListSubmit={handleListSubmit}
-        items={items}
-        user={user}
-        buttonName='Add to my lists'
-        showModal={showModal}
-        // setShowModal={setShowModal}
-        handleClose={handleClose}
-      />
+      <h1 className={styles.header_text}>Add your list!</h1>
+      <Row className='p-0'>
+        <Col xs={12} md={7} className={styles.form}>
+          {' '}
+          <ListForm
+            submitedListName={submitedListName}
+            submitListNameError={submitListNameError}
+            submitListItemError={submitListItemError}
+            setSubmitedListName={setSubmitedListName}
+            setSubmitedListItemError={setSubmitedListItemError}
+            setSubmitedListNameError={setSubmitedListNameError}
+            handleListSubmit={handleListSubmit}
+            items={items}
+            user={user}
+            buttonName='Add to my lists'
+            showModal={showModal}
+            // setShowModal={setShowModal}
+            handleClose={handleClose}
+          />
+        </Col>
+        <Col xs={0} md={5} className='p-0'>
+          {' '}
+          <img
+            src={`${process.env.PUBLIC_URL}/images/pexels-nataliya-vaitkevich-6214376.jpg`}
+            alt='shopping list'
+          />
+        </Col>
+      </Row>
     </div>
   );
 };

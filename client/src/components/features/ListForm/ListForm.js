@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Button, Container, Modal, Spinner } from 'react-bootstrap';
+import { Container, Modal, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   loadItems,
@@ -16,6 +16,7 @@ import ItemsList from '../../views/ItemsList/ItemsList';
 
 import { useReactToPrint } from 'react-to-print';
 import { useNavigate } from 'react-router-dom';
+import Button from '../../common/Button/Button';
 
 const ListForm = ({
   submitedListName,
@@ -96,7 +97,7 @@ const ListForm = ({
               removeItem={handleItemRemove}
             />
 
-            <button onClick={handlePrint}>Print list</button>
+            <Button onClick={handlePrint}>Print list</Button>
           </div>
         )}
 
@@ -110,11 +111,12 @@ const ListForm = ({
             {buttonName}
           </button>
         </form>
-        <button type='button' onClick={handleResetListItems}>
+        <Button type='button' onClick={handleResetListItems}>
           Reset list
-        </button>
+        </Button>
         {submitListNameError && <p>You need to add list name</p>}
         {submitListItemError && <p>You need to add at least 1 item</p>}
+
         <Modal show={showModal} onHide={handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>Your list was succesfully added</Modal.Title>

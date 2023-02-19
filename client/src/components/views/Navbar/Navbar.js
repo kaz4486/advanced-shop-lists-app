@@ -10,18 +10,18 @@ const Navbar = () => {
   return (
     <ResponsiveMenu
       menuOpenButton={
-        <div>
+        <div className={styles.button}>
           <p>open</p>
         </div>
       }
       menuCloseButton={
-        <div>
+        <div className={styles.button}>
           <p>x</p>
         </div>
       }
       changeMenuOn='500px'
       largeMenuClassName={styles.large_menu_classname}
-      smallMenuClassName='small-menu-classname'
+      smallMenuClassName={styles.small_menu_classname}
       menu={
         <ul>
           <li>

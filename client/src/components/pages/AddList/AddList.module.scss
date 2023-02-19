@@ -1,0 +1,35 @@
+@import '../../../styles/settings.scss';
+
+.header_text {
+  //   background: rgb(39, 174, 96);
+  //   background: linear-gradient(
+  //     180deg,
+  //     rgba(39, 174, 96, 1) 4%,
+  //     rgba(107, 161, 161, 1) 87%
+  //   );
+  background-color: $color-light-green;
+  color: $color-dark-green;
+  margin-bottom: 0;
+  text-align: center;
+  padding: 10px;
+}
+.form {
+  padding: 50px;
+  background: rgb(133, 173, 175);
+  background: linear-gradient(
+    180deg,
+    rgba(133, 173, 175, 1) 0%,
+    rgba(102, 161, 159, 1) 71%,
+    rgba(96, 157, 155, 1) 100%
+  );
+}
+img {
+  width: 45vw;
+  height: 80vh;
+}
+
+@media (max-width: 760px) {
+  img {
+    visibility: hidden;
+  }
+}
