@@ -13,10 +13,10 @@ import { Alert } from 'react-bootstrap';
 import SwitchSystem from '../SwitchSystem/SwitchSystem';
 import ListNameForm from '../../common/ListNameForm/ListNameForm';
 import ItemsList from '../../views/ItemsList/ItemsList';
-
 import { useReactToPrint } from 'react-to-print';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../common/Button/Button';
+import styles from './ListForm.module.scss';
 
 const ListForm = ({
   submitedListName,
@@ -82,40 +82,47 @@ const ListForm = ({
   if (request.success)
     return (
       <Container>
-        <ListNameForm
-          subbmitedName={submitedListName}
-          setSubmitedListName={setSubmitedListName}
-          setSubmitedListNameError={setSubmitedListNameError}
-        />
-        <SwitchSystem action={handleSwitchSystem} system={system} />
-        <ItemBar />
-        {items.length !== 0 && (
-          <div>
-            <ItemsList
-              ref={componentRef}
-              items={items}
-              removeItem={handleItemRemove}
-            />
+        <section>
+          <ListNameForm
+            subbmitedName={submitedListName}
+            setSubmitedListName={setSubmitedListName}
+            setSubmitedListNameError={setSubmitedListNameError}
+          />
+        </section>
+        <section>
+          <SwitchSystem action={handleSwitchSystem} system={system} />
+        </section>
+        <section>
+          <ItemBar />
+          {items.length !== 0 && (
+            <div>
+              <ItemsList
+                ref={componentRef}
+                items={items}
+                removeItem={handleItemRemove}
+              />
 
-            <Button onClick={handlePrint}>Print list</Button>
-          </div>
-        )}
-
-        <ItemsForm
-          system={system}
-          setSubmitedListError={setSubmitedListItemError}
-          id={id}
-        />
-        <form onSubmit={(e) => handleListSubmit(e)}>
-          <button type='submit' disabled={user !== null ? false : true}>
-            {buttonName}
-          </button>
-        </form>
-        <Button type='button' onClick={handleResetListItems}>
-          Reset list
-        </Button>
-        {submitListNameError && <p>You need to add list name</p>}
-        {submitListItemError && <p>You need to add at least 1 item</p>}
+              <Button onClick={handlePrint}>Print list</Button>
+            </div>
+          )}
+        </section>
+        <section>
+          <ItemsForm
+            system={system}
+            setSubmitedListError={setSubmitedListItemError}
+            id={id}
+          />
+          <form onSubmit={(e) => handleListSubmit(e)}>
+            <button type='submit' disabled={user !== null ? false : true}>
+              {buttonName}
+            </button>
+          </form>
+          <Button type='button' onClick={handleResetListItems}>
+            Reset list
+          </Button>
+          {submitListNameError && <p>You need to add list name</p>}
+          {submitListItemError && <p>You need to add at least 1 item</p>}
+        </section>
 
         <Modal show={showModal} onHide={handleClose}>
           <Modal.Header closeButton>

@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { Container } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
+import Button from '../Button/Button';
+import styles from './ListNameForm.module.scss';
 
 const ListNameForm = ({
   subbmitedName,
@@ -28,25 +30,41 @@ const ListNameForm = ({
 
   return (
     <Container>
-      {subbmitedName && <h2>{subbmitedName}</h2>}
-      {!subbmitedName && (
-        <form onSubmit={(e) => handleListNameSubmit(e)}>
-          <input
-            type='text'
-            value={listName}
-            onChange={(e) => handleInputChange(e.target.value)}
-            placeholder='Insert list name...'
-          />
-          {listNameError && (
-            <p>List name is required and should have max 30 sings</p>
+      <div className={styles.form_section}>
+        <Row>
+          {subbmitedName && <h2>{subbmitedName}</h2>}
+
+          {!subbmitedName && (
+            <form
+              onSubmit={(e) => handleListNameSubmit(e)}
+              className={styles.form}
+            >
+              <Row className='align-items-center mb-2'>
+                <Col xs={12} md={6} className='d-flex justify-content-end'>
+                  <input
+                    type='text'
+                    value={listName}
+                    onChange={(e) => handleInputChange(e.target.value)}
+                    placeholder='Insert list name...'
+                  />
+                </Col>
+                <Col xs={12} md={6} className='d-flex justify-content-start'>
+                  <Button type='submit'>Submit list name</Button>
+                </Col>
+              </Row>
+              {listNameError && (
+                <p className={styles.p}>
+                  List name is required and should have max 30 sings
+                </p>
+              )}
+            </form>
           )}
 
-          <button type='submit'>Submit list name</button>
-        </form>
-      )}
-      {subbmitedName && (
-        <button onClick={() => setSubmitedListName('')}>Edit name</button>
-      )}
+          {subbmitedName && (
+            <Button onClick={() => setSubmitedListName('')}>Edit name</Button>
+          )}
+        </Row>
+      </div>
     </Container>
   );
 };

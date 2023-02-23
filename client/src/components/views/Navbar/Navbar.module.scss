@@ -1,5 +1,7 @@
 @import '../../../styles/settings.scss';
 
+//active
+
 .button {
   color: $color-white-background;
   font-family: $font-text;
@@ -19,7 +21,7 @@
       margin-right: 2rem;
       opacity: 1;
 
-      a {
+      .link {
         text-decoration: none;
         padding-bottom: 5px;
         position: relative;
@@ -58,6 +60,50 @@
 
         //   transition: $transition;
         // }
+
+        // &:focus {
+        //   &::after {
+        //     color: #121125;
+        //     transform: translateX(-50%) scaleX(2);
+        //   }
+        // }
+
+        // &:focus > span {
+        //   color: #121125;
+        // }
+      }
+
+      .linkActive {
+        text-decoration: none;
+        padding-bottom: 5px;
+        position: relative;
+
+        &::after {
+          content: '';
+          position: absolute;
+          height: 3px;
+          bottom: 3px;
+          left: 50%;
+          width: 40%;
+          border-bottom: 3px solid $color-dark-active;
+          transform: translateX(-50%) scaleX(2);
+          transition: $transition;
+        }
+        &:hover {
+          &::after {
+            transform: translateX(-50%) scaleX(2);
+          }
+        }
+        span {
+          left: 0;
+          right: 0;
+          top: 0;
+          text-align: center;
+          padding-top: 20px;
+
+          transition: $transition;
+          color: $color-dark-active;
+        }
       }
     }
   }
@@ -73,7 +119,7 @@
       opacity: 1;
       margin-top: 1rem;
 
-      a {
+      .link {
         text-decoration: none;
         padding-bottom: 5px;
         position: relative;
@@ -104,6 +150,43 @@
 
           transition: $transition;
           color: $color-light-green;
+        }
+        // .linkActive > span
+        //   color: red;
+        //   &::after {
+        //     transform: translateX(-50%) scaleX(2);
+        //   }
+      }
+      .linkActive {
+        text-decoration: none;
+        padding-bottom: 5px;
+        position: relative;
+
+        &::after {
+          content: '';
+          position: absolute;
+          height: 3px;
+          bottom: 3px;
+          left: 50%;
+          width: 40%;
+          border-bottom: 3px solid $color-dark-active;
+          transform: translateX(-50%) scaleX(2);
+          transition: $transition;
+        }
+        &:hover {
+          &::after {
+            transform: translateX(-50%) scaleX(2);
+          }
+        }
+        span {
+          left: 0;
+          right: 0;
+          top: 0;
+          text-align: center;
+          padding-top: 20px;
+
+          transition: $transition;
+          color: $color-dark-active;
         }
       }
     }

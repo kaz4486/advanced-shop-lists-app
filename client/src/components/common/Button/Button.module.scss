@@ -6,14 +6,16 @@
   border: none;
   //   border: 0.1px solid $color-light-green;
   border-radius: 5px;
-  padding: 10px;
-  min-width: 170px;
-  font-size: 20px;
+  padding: 7px;
+  width: 150px;
+  font-size: 18px;
   position: relative;
+  margin: 0 5px;
 
   -webkit-box-shadow: 3px 1px 25px 8px rgba(72, 72, 72, 1);
   -moz-box-shadow: 3px 1px 25px 8px rgba(72, 72, 72, 1);
   box-shadow: 3px 1px 25px 8px rgba(72, 72, 72, 1);
+
   &::after {
     content: '';
     position: absolute;
@@ -32,5 +34,21 @@
       transform: translateX(-50%) scaleX(1);
       padding-top: 0;
     }
+  }
+}
+
+.active {
+  background-color: $color-light-green;
+  color: $color-dark-active;
+  &::after {
+    content: '';
+    position: absolute;
+    height: 3px;
+    bottom: 3px;
+    left: 50%;
+    width: 40%;
+    // color: $color-dark-active;
+    border-bottom: 3px solid $color-dark-active;
+    transform: translateX(-50%) scaleX(1);
   }
 }

@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import { getUser } from '../../../redux/userRedux';
 import ResponsiveMenu from 'react-responsive-navbar';
 import styles from './Navbar.module.scss';
+import { NavLink } from 'react-router-dom';
+import clsx from 'clsx';
 
 const Navbar = () => {
   const user = useSelector((state) => getUser(state));
@@ -25,38 +27,59 @@ const Navbar = () => {
       menu={
         <ul>
           <li>
-            {' '}
-            <a href='/'>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? styles.linkActive : styles.link
+              }
+              to='/'
+            >
               <span>Home</span>
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a href='/lists'>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? styles.linkActive : styles.link
+              }
+              to='/lists'
+            >
               <span>Lists</span>
-            </a>
+            </NavLink>
           </li>
           {user === null && (
             <li>
-              {' '}
-              <a href='/register'>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? styles.linkActive : styles.link
+                }
+                to='/register'
+              >
                 <span>Register</span>
-              </a>
+              </NavLink>
             </li>
           )}
           {user !== null && (
             <li>
-              {' '}
-              <a href='/logout'>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? styles.linkActive : styles.link
+                }
+                to='/logout'
+              >
                 <span>Logout</span>
-              </a>
+              </NavLink>
             </li>
           )}
           {user === null && (
             <li>
-              {' '}
-              <a href='/login'>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? styles.linkActive : styles.link
+                }
+                to='/login'
+              >
                 <span>Login</span>
-              </a>
+              </NavLink>
             </li>
           )}
         </ul>
