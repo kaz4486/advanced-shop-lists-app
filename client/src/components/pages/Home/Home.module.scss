@@ -8,6 +8,8 @@
     height: 60vh;
     z-index: -1;
     position: absolute;
+    top: 0;
+    left: 0;
   }
   .text_background {
     background-color: $color-light-green;
@@ -28,12 +30,14 @@
     // background: transparent;
     // backdrop-filter: blur(3px);
     h1 {
-      //   position: relative;
+      position: relative;
       z-index: 2;
       display: inline-block;
       opacity: 1;
       margin: 0;
       padding: 5px;
+      color: $color-dark-green;
+
       // opacity: ;
     }
   }

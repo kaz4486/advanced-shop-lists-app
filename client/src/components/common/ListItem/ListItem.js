@@ -1,15 +1,17 @@
-import { Container, Button } from 'react-bootstrap';
 import { Col, Row } from 'react-bootstrap';
+import Button from '../Button/Button';
+import SmallButton from '../SmallButton/SmallButton';
 
 const ListItem = ({ item, removeAction }) => {
   if (item)
     return (
-      <Container key={item.name}>
+      <div key={item.id}>
         <Row>
-          <Col xs={3}>
+          <Col xs={1}></Col>
+          <Col xs={2}>
             <p>{item.name}</p>
           </Col>
-          <Col xs={3}>
+          <Col xs={2}>
             <p>{item.amount}</p>
           </Col>
           <Col xs={2}>
@@ -21,11 +23,12 @@ const ListItem = ({ item, removeAction }) => {
 
           {removeAction && (
             <Col xs={2}>
-              <Button onClick={() => removeAction(item.id)}></Button>
+              <SmallButton onClick={() => removeAction(item.id)}>x</SmallButton>
             </Col>
           )}
+          <Col xs={1}></Col>
         </Row>
-      </Container>
+      </div>
     );
 };
 

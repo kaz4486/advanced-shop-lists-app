@@ -1,8 +1,7 @@
-import styles from './Button.module.scss';
 import clsx from 'clsx';
+import styles from './SmallButton.module.scss';
 
-const Button = ({ children, onClick, type, className, disabled }) => {
-  console.log(className);
+const SmallButton = ({ children, onClick, type, className }) => {
   return (
     <button
       type={type}
@@ -12,11 +11,10 @@ const Button = ({ children, onClick, type, className, disabled }) => {
         className === 'active' ? styles.active : undefined,
         className === 'red' ? styles.red : undefined
       )}
-      disabled={disabled}
     >
       {children}
     </button>
   );
 };
 
-export default Button;
+export default SmallButton;

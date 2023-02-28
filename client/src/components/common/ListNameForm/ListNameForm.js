@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import Button from '../Button/Button';
+import SmallButton from '../SmallButton/SmallButton';
 import styles from './ListNameForm.module.scss';
 
 const ListNameForm = ({
@@ -49,7 +49,7 @@ const ListNameForm = ({
                   />
                 </Col>
                 <Col xs={12} md={6} className='d-flex justify-content-start'>
-                  <Button type='submit'>Submit list name</Button>
+                  <SmallButton type='submit'>Submit list name</SmallButton>
                 </Col>
               </Row>
               {listNameError && (
@@ -59,9 +59,12 @@ const ListNameForm = ({
               )}
             </form>
           )}
-
+        </Row>
+        <Row className='d-flex justify-content-center'>
           {subbmitedName && (
-            <Button onClick={() => setSubmitedListName('')}>Edit name</Button>
+            <SmallButton onClick={() => setSubmitedListName('')}>
+              Edit name
+            </SmallButton>
           )}
         </Row>
       </div>

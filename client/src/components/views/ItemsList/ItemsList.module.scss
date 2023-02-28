@@ -1,0 +1,10 @@
+@import '../../../styles/settings.scss';
+
+.container {
+  margin: 4rem 0;
+  .list {
+    list-style: none;
+    padding: 0;
+    color: $color-dark-active;
+  }
+}

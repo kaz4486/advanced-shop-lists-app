@@ -60,7 +60,7 @@ const AddList = () => {
     <div>
       <h1 className={styles.header_text}>Add your list!</h1>
       <Row className='p-0'>
-        <Col xs={12} md={7} className={styles.form}>
+        <Col xs={12} xl={7} className={styles.form}>
           {' '}
           <ListForm
             submitedListName={submitedListName}
@@ -78,7 +78,7 @@ const AddList = () => {
             handleClose={handleClose}
           />
         </Col>
-        <Col xs={0} md={5} className='p-0'>
+        <Col xs={0} xl={5} className='p-0'>
           {' '}
           <img
             src={`${process.env.PUBLIC_URL}/images/pexels-nataliya-vaitkevich-6214376.jpg`}

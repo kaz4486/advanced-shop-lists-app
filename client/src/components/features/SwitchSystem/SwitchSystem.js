@@ -1,6 +1,7 @@
 import clsx from 'clsx';
+import { Col, Row } from 'react-bootstrap';
 
-import Button from '../../common/Button/Button';
+import SmallButton from '../../common/SmallButton/SmallButton';
 
 const SwitchSystem = ({ action, system }) => {
   // const [active, setActive] = useState();
@@ -11,18 +12,29 @@ const SwitchSystem = ({ action, system }) => {
   // }
   return (
     <div>
-      <Button
-        onClick={action}
-        className={clsx(system === 'metric' ? 'active' : undefined)}
-      >
-        Metric
-      </Button>
-      <Button
-        onClick={action}
-        className={clsx(system === 'imperial' ? 'active' : undefined)}
-      >
-        Imperial
-      </Button>
+      <Row>
+        <Col xs={1}></Col>
+        <Col xs={3} className='d-flex align-items-center'>
+          <h5 className='m-0'>Metric system:</h5>
+        </Col>
+        <Col xs={2}>
+          <SmallButton
+            onClick={action}
+            className={clsx(system === 'metric' ? 'active' : undefined)}
+          >
+            Metric
+          </SmallButton>
+        </Col>
+        <Col xs={2}>
+          <SmallButton
+            onClick={action}
+            className={clsx(system === 'imperial' ? 'active' : undefined)}
+          >
+            Imperial
+          </SmallButton>
+        </Col>
+        <Col xs={2}></Col>
+      </Row>
     </div>
   );
 };

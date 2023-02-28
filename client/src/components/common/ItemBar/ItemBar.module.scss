@@ -1,0 +1,7 @@
+@import '../../../styles/settings.scss';
+
+.bar {
+  border-bottom: 1px solid $color-light-green;
+  margin-bottom: 1rem;
+  color: $color-dark-active;
+}

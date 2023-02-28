@@ -1,6 +1,9 @@
 @import '../../../styles/settings.scss';
 
 .form_section {
+  //   justify-content: center;
+  //   display: flex;
+  color: $color-white-background;
   h2 {
     display: inline-block;
     margin-right: 2rem;
@@ -8,6 +11,7 @@
   input {
     border-radius: 5px;
     border-color: $color-dark-green;
+    width: fit-content;
     // margin-right: 3rem;
     &::placeholder {
       padding: 2px;

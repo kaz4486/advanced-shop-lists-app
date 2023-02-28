@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Container, Modal, Spinner } from 'react-bootstrap';
+import { Col, Container, Modal, Row, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   loadItems,
@@ -93,7 +93,7 @@ const ListForm = ({
           <SwitchSystem action={handleSwitchSystem} system={system} />
         </section>
         <section>
-          <ItemBar />
+          {/* {items.length !== 0 && <ItemBar />} */}
           {items.length !== 0 && (
             <div>
               <ItemsList
@@ -112,33 +112,62 @@ const ListForm = ({
             setSubmitedListError={setSubmitedListItemError}
             id={id}
           />
-          <form onSubmit={(e) => handleListSubmit(e)}>
-            <button type='submit' disabled={user !== null ? false : true}>
-              {buttonName}
-            </button>
-          </form>
-          <Button type='button' onClick={handleResetListItems}>
-            Reset list
-          </Button>
+          <Row>
+            <Col xs={12} sm={6}>
+              {' '}
+              <form onSubmit={(e) => handleListSubmit(e)}>
+                <Button type='submit' disabled={user !== null ? false : true}>
+                  {buttonName}
+                </Button>
+              </form>
+            </Col>
+            <Col xs={12} sm={6}>
+              {' '}
+              <Button
+                type='button'
+                onClick={handleResetListItems}
+                className='red'
+              >
+                Reset list
+              </Button>
+            </Col>
+          </Row>
           {submitListNameError && <p>You need to add list name</p>}
           {submitListItemError && <p>You need to add at least 1 item</p>}
         </section>
 
-        <Modal show={showModal} onHide={handleClose}>
-          <Modal.Header closeButton>
+        <Modal
+          show={showModal}
+          onHide={handleClose}
+          backdrop='static'
+          size='lg'
+        >
+          <Modal.Header closeButton className='d-flex justify-content-center'>
             <Modal.Title>Your list was succesfully added</Modal.Title>
           </Modal.Header>
-          <Modal.Body>What do you want to do now?</Modal.Body>
-          <Modal.Footer>
-            <Button variant='secondary' onClick={handlePrint}>
-              Print that list
-            </Button>
-            <Button variant='danger' onClick={handleCreateNewList}>
-              Add new list
-            </Button>
-            <Button variant='danger' onClick={() => navigate('/')}>
-              Back to Home
-            </Button>
+          <Modal.Body className='d-flex justify-content-center'>
+            What do you want to do now?
+          </Modal.Body>
+          <Modal.Footer className='d-flex justify-content-center'>
+            <Row>
+              <Col xs={12} md={4}>
+                <Button variant='secondary' onClick={handlePrint}>
+                  Print that list
+                </Button>
+              </Col>
+
+              <Col xs={12} md={4}>
+                <Button variant='danger' onClick={handleCreateNewList}>
+                  Add new list
+                </Button>
+              </Col>
+
+              <Col xs={12} md={4}>
+                <Button variant='danger' onClick={() => navigate('/')}>
+                  Back to Home
+                </Button>
+              </Col>
+            </Row>
           </Modal.Footer>
         </Modal>
       </Container>
