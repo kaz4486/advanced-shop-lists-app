@@ -1,0 +1,10 @@
+@import '../../../styles/settings.scss';
+
+.lists {
+  padding: 4rem;
+  background-color: $color-light-green;
+  color: $color-dark-green;
+  .list_summary {
+    margin-bottom: 2rem;
+  }
+}

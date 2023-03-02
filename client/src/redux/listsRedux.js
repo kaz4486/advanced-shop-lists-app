@@ -47,7 +47,6 @@ export const loadListsRequest = () => {
     dispatch(startRequest({ name: LOAD_LISTS }));
     try {
       let res = await axios.get(`${API_URL}/lists`);
-      console.log(res.data);
       dispatch(loadLists(res.data));
       dispatch(endRequest({ name: LOAD_LISTS }));
     } catch (e) {
@@ -57,12 +56,10 @@ export const loadListsRequest = () => {
 };
 
 export const loadListsByUserRequest = (login) => {
-  console.log(login);
   return async (dispatch) => {
     dispatch(startRequest({ name: LOAD_LISTS }));
     try {
       let res = await axios.get(`${API_URL}/lists/${login}`);
-      console.log(res.data);
       dispatch(loadLists(res.data));
       dispatch(endRequest({ name: LOAD_LISTS }));
     } catch (e) {
@@ -77,7 +74,6 @@ export const createListRequest = (data) => {
   return async (dispatch) => {
     dispatch(startRequest({ name: CREATE_LIST }));
     try {
-      console.log('tu');
       let res = await axios.post(
         `${API_URL}/lists`,
         data,
@@ -95,7 +91,6 @@ export const createListRequest = (data) => {
 };
 
 export const editListRequest = (data, id) => {
-  console.log(data, id);
   return async (dispatch) => {
     dispatch(startRequest({ name: EDIT_LIST }));
     try {

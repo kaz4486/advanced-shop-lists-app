@@ -24,7 +24,6 @@ const App = () => {
       const loggedInUser = localStorage.getItem('user');
       if (typeof loggedInUser === 'string') {
         const foundUser = JSON.parse(loggedInUser);
-        console.log(foundUser.login);
         dispatch(logIn(foundUser));
       }
     }

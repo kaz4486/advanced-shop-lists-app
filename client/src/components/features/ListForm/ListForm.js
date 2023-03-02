@@ -35,6 +35,8 @@ const ListForm = ({
 }) => {
   const dispatch = useDispatch();
 
+  console.log(items);
+
   const request = useSelector(getRequest);
   // const user = useSelector(getUser);
 
@@ -63,6 +65,12 @@ const ListForm = ({
   const handleResetListItems = () => {
     dispatch(removeAllItems());
   };
+
+  useEffect(() => {
+    return () => {
+      dispatch(removeAllItems());
+    };
+  }, []);
 
   const handleCreateNewList = () => {
     handleResetListItems();

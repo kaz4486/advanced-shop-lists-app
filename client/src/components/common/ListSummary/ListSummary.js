@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Button, Container } from 'react-bootstrap';
+import SmallButton from '../SmallButton/SmallButton';
 
 const ListSummary = ({ list }) => {
   return (
@@ -8,7 +9,7 @@ const ListSummary = ({ list }) => {
         <h3>{list.name}</h3>
         <p>{list.publicationDate}</p>
         <Link to={'/lists/' + list._id}>
-          <Button>view more</Button>
+          <SmallButton>view more</SmallButton>
         </Link>
       </div>
     </Container>

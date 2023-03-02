@@ -7,7 +7,6 @@ const MainLayout = ({ children }) => {
     <div>
       <Header />
       <div>{children}</div>
-      <p>dasds</p>
       <Footer />
     </div>
   );

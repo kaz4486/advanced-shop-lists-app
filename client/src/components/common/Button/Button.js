@@ -2,7 +2,6 @@ import styles from './Button.module.scss';
 import clsx from 'clsx';
 
 const Button = ({ children, onClick, type, className, disabled }) => {
-  console.log(className);
   return (
     <button
       type={type}

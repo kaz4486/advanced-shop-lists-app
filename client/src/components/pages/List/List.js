@@ -13,6 +13,8 @@ import { Alert, Row, Col, Container, Button, Modal } from 'react-bootstrap';
 import ItemBar from '../../common/ItemBar/ItemBar';
 import ListItem from '../../common/ListItem/ListItem';
 import { getUser } from '../../../redux/userRedux';
+import SmallButton from '../../common/SmallButton/SmallButton';
+import styles from './List.module.scss';
 
 const List = () => {
   const { id } = useParams();
@@ -56,17 +58,34 @@ const List = () => {
     return <Alert color='info'>Your list was succesfuly removed</Alert>;
   if (request.success)
     return (
-      <div>
+      <section className={styles.list}>
         <ItemBar />
         {list.items.map((item) => (
           <ListItem item={item} key={item.name} />
         ))}
 
-        <Link to={'/lists/edit/' + list._id}>
-          <Button>edit</Button>
-        </Link>
+        <Row className='d-flex justify-content-center my-5'>
+          <Col xs={6} className='d-flex justify-content-end'>
+            {' '}
+            <Link to={'/lists/edit/' + list._id}>
+              <SmallButton>edit</SmallButton>
+            </Link>
+          </Col>
+          <Col xs={6} className='d-flex justify-content-start'>
+            {' '}
+            <SmallButton className='red' onClick={handleShow}>
+              delete
+            </SmallButton>
+          </Col>
+        </Row>
 
-        <Button onClick={handleShow}>remove</Button>
+        <Row className='d-flex justify-content-start'>
+          <Col xs={2}>
+            <Link to={'/lists/'}>
+              <SmallButton>Back to lists</SmallButton>
+            </Link>
+          </Col>
+        </Row>
 
         <Modal show={showModal} onHide={handleClose}>
           <Modal.Header closeButton>
@@ -81,11 +100,11 @@ const List = () => {
               Cancel
             </Button>
             <Button variant='danger' onClick={handleRemoveList}>
-              Remove
+              Delete
             </Button>
           </Modal.Footer>
         </Modal>
-      </div>
+      </section>
     );
 };
 

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Button, Container } from 'react-bootstrap';
+import { Button, Col, Container, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getListByUser,
@@ -13,6 +13,7 @@ import { Alert } from 'react-bootstrap';
 // import { Navigate, useNavigate, Link } from 'react-router-dom';
 import ListSummary from '../../common/ListSummary/ListSummary';
 import { getUser } from '../../../redux/userRedux';
+import styles from './Lists.module.scss';
 
 const Lists = () => {
   const dispatch = useDispatch();
@@ -21,9 +22,6 @@ const Lists = () => {
   const user = useSelector(getUser);
   // const lists = useSelector(getListByUser(user));
   // const navigate = useNavigate();
-
-  console.log(lists);
-  console.log(user);
 
   useEffect(() => {
     if (user !== null) {
@@ -51,13 +49,20 @@ const Lists = () => {
   }
   if (request.success)
     return (
-      <Container>
-        {lists.map((list) => (
-          <div key={list._id}>
-            <ListSummary list={list} />
-          </div>
-        ))}
-      </Container>
+      <section className={styles.lists}>
+        <Container>
+          <Row>
+            {lists.map((list) => (
+              <Col xs={6} md={3} lg={2} key={list._id}>
+                {' '}
+                <div className={styles.list_summary}>
+                  <ListSummary list={list} />
+                </div>
+              </Col>
+            ))}
+          </Row>
+        </Container>
+      </section>
     );
 };
 

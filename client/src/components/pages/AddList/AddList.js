@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import ListForm from '../../features/ListForm/ListForm';
 import createPublicationDate from '../../../utils/createPublicationDate';
 import { createListRequest } from '../../../redux/listsRedux';
-import { useState } from 'react';
-import { getItems } from '../../../redux/itemsRedux';
+import { useEffect, useState } from 'react';
+import { getItems, removeAllItems } from '../../../redux/itemsRedux';
 import { getUser } from '../../../redux/userRedux';
 import { Col, Row } from 'react-bootstrap';
 import styles from './AddList.module.scss';
@@ -78,7 +78,7 @@ const AddList = () => {
             handleClose={handleClose}
           />
         </Col>
-        <Col xs={0} xl={5} className='p-0'>
+        <Col xs={0} xl={5} className={styles.image_col}>
           {' '}
           <img
             src={`${process.env.PUBLIC_URL}/images/pexels-nataliya-vaitkevich-6214376.jpg`}

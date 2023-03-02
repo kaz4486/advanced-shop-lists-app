@@ -41,7 +41,13 @@ const itemsReducer = (statePart = [], action = {}) => {
     case LOAD_ITEMS:
       return statePart;
     case ADD_ITEM:
-      return [...statePart, { ...action.payload, id: nanoid() }];
+      const foundItem = statePart.find(
+        (item) => item.name === action.payload.name
+      );
+      if (!foundItem) {
+        return [...statePart, { ...action.payload, id: nanoid() }];
+      } else return statePart;
+    // eslint-disable-next-line no-fallthrough
     case ADD_ITEM_BY_LIST:
       return action.payload;
     // case GET_ITEMS_BY_LIST:

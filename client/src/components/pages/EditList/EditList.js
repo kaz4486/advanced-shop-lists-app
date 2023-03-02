@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Alert, Spinner } from 'react-bootstrap';
+import { Alert, Col, Row, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import {
   addItem,
   addItemsByList,
@@ -18,7 +18,9 @@ import {
   loadListsRequest,
 } from '../../../redux/listsRedux';
 import { getUser } from '../../../redux/userRedux';
+import SmallButton from '../../common/SmallButton/SmallButton';
 import ListForm from '../../features/ListForm/ListForm';
+import styles from './EditList.module.scss';
 
 const EditList = () => {
   const dispatch = useDispatch();
@@ -28,21 +30,22 @@ const EditList = () => {
   const user = useSelector(getUser);
   //   const items = list?.items;
   const items = useSelector(getItems);
-  console.log(items);
+  const request = useSelector(getRequest);
+  console.log('list', list);
+  console.log('list items', list?.items);
+  console.log('items', items);
+
   //   const request = useSelector(getRequest);
 
   //   const [items, setItems] = useState(list?.items);
 
   const [submitedListName, setSubmitedListName] = useState(list?.name);
-  console.log(submitedListName);
 
   const [submitListNameError, setSubmitedListNameError] = useState(false);
   const [submitListItemError, setSubmitedListItemError] = useState(false);
 
   // const lists = useSelector(getListByUser(user));
   // const navigate = useNavigate();
-
-  console.log(user);
 
   // useEffect(() => {
   //   if (user !== null) {
@@ -52,15 +55,12 @@ const EditList = () => {
   // }, [dispatch, user]);
 
   useEffect(() => {
-    dispatch(loadLists);
-  }, [dispatch, list]);
+    dispatch(loadListsRequest());
+  }, []);
 
   useEffect(() => {
     list?.items.forEach((item) => dispatch(addItem({ ...item })));
-    // return () => {
-    //   dispatch(removeAllItems);
-    // };
-  }, []);
+  }, [list?.items]);
 
   useEffect(() => {
     return () => {
@@ -76,11 +76,8 @@ const EditList = () => {
 
     listToEdit.name = submitedListName;
 
-    console.log(items);
-
     listToEdit.items = items;
     listToEdit.user = user;
-    console.log(listToEdit);
 
     if (submitedListName && items.length !== 0) {
       dispatch(editListRequest(listToEdit, id));
@@ -92,8 +89,6 @@ const EditList = () => {
       setSubmitedListNameError(true);
       setSubmitedListItemError(true);
     }
-
-    /// create new or print?
   };
 
   //   if (request.pending)
@@ -103,26 +98,58 @@ const EditList = () => {
   //       </Spinner>
   //     );
 
-  if (items === []) return <Alert color='info'>Something went wrong...</Alert>;
+  // if (request.pending)
+  //   return (
+  //     <Spinner className='mt-3' animation='border' role='status'>
+  //       <span className='visually-hidden'>Loading...</span>
+  //     </Spinner>
+  //   );
 
-  //   if (request.success)
+  // if (list?.items.length === 0)
+  //   return <Alert color='info'>Something went wrong...</Alert>;
+
+  if (!list)
+    return (
+      <Spinner className='mt-3' animation='border' role='status'>
+        <span className='visually-hidden'>Loading...</span>
+      </Spinner>
+    );
+
   return (
     <div>
-      <h1>Edit list</h1>
-      <ListForm
-        submitedListName={submitedListName}
-        submitListNameError={submitListNameError}
-        submitListItemError={submitListItemError}
-        setSubmitedListName={setSubmitedListName}
-        setSubmitedListItemError={setSubmitedListItemError}
-        setSubmitedListNameError={setSubmitedListNameError}
-        handleListSubmit={handleListSubmit}
-        items={items}
-        // setItems={setItems}
-        user={user}
-        buttonName='Edit that list'
-        id={id}
-      />
+      <h1 className={styles.header_text}>Edit list</h1>
+      <Row className={styles.form}>
+        <Col xs={12} xl={7}>
+          <ListForm
+            submitedListName={submitedListName}
+            submitListNameError={submitListNameError}
+            submitListItemError={submitListItemError}
+            setSubmitedListName={setSubmitedListName}
+            setSubmitedListItemError={setSubmitedListItemError}
+            setSubmitedListNameError={setSubmitedListNameError}
+            handleListSubmit={handleListSubmit}
+            items={items}
+            // setItems={setItems}
+            user={user}
+            buttonName='Edit that list'
+            id={id}
+          />
+          <Row className='d-flex justify-content-start'>
+            <Col xs={2}>
+              <Link to={'/lists/' + id}>
+                <SmallButton>Back to lists</SmallButton>
+              </Link>
+            </Col>
+          </Row>
+        </Col>
+        <Col xs={0} xl={5} className={styles.image_col}>
+          {' '}
+          <img
+            src={`${process.env.PUBLIC_URL}/images/pexels-nataliya-vaitkevich-6214376.jpg`}
+            alt='shopping list'
+          />
+        </Col>
+      </Row>
     </div>
   );
 };
