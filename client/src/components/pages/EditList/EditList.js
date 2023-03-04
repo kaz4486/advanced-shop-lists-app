@@ -25,6 +25,8 @@ import styles from './EditList.module.scss';
 const EditList = () => {
   const dispatch = useDispatch();
 
+  //NAZWA LISTY??
+
   const { id } = useParams();
   const list = useSelector((state) => getListById(state, id));
   const user = useSelector(getUser);
@@ -60,7 +62,8 @@ const EditList = () => {
 
   useEffect(() => {
     list?.items.forEach((item) => dispatch(addItem({ ...item })));
-  }, [list?.items]);
+    setSubmitedListName(list?.name);
+  }, [dispatch, list]);
 
   useEffect(() => {
     return () => {

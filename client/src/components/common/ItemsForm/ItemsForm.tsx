@@ -7,8 +7,13 @@ import Button from '../Button/Button';
 import SmallButton from '../SmallButton/SmallButton';
 import styles from './ItemsForm.module.scss';
 
-const ItemsForm = ({ system, setSubmitedListError, id }) => {
+const ItemsForm = ({ system, setSubmitedListError, id, items }) => {
   const dispatch = useDispatch();
+
+  const [doubleNameError, setDoubleNameError] = useState(false);
+
+  let itemNamesArray: string[] = [];
+  items.map((item) => itemNamesArray.push(item.name));
 
   type FormValues = {
     item: { name: string; amount: number; unit: string; volume: number }[];
@@ -39,7 +44,14 @@ const ItemsForm = ({ system, setSubmitedListError, id }) => {
   }, [isSubmitSuccessful, reset]);
 
   const onItemSubmit = ({ ...data }: FormValues) => {
+    setDoubleNameError(false);
     setSubmitedListError(false);
+    const doubleName = data.item.find((requestedItem) =>
+      itemNamesArray.includes(requestedItem.name)
+    );
+    if (doubleName) {
+      setDoubleNameError(true);
+    }
     data.item.forEach((element) => dispatch(addItem({ ...element })));
     // dispatch(edi)
   };
@@ -94,6 +106,9 @@ const ItemsForm = ({ system, setSubmitedListError, id }) => {
           return (
             <section key={field.id}>
               <Row>
+                {doubleNameError && (
+                  <p>You can't add item with the same name</p>
+                )}
                 <Col xs={2}>
                   <label>
                     <span>name</span>

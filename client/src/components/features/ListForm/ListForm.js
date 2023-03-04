@@ -119,6 +119,7 @@ const ListForm = ({
             system={system}
             setSubmitedListError={setSubmitedListItemError}
             id={id}
+            items={items}
           />
           <Row>
             <Col xs={12} sm={6}>
