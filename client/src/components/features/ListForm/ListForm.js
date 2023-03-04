@@ -17,6 +17,15 @@ import { useReactToPrint } from 'react-to-print';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../common/Button/Button';
 import styles from './ListForm.module.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faAdd,
+  faEdit,
+  faList12,
+  faListSquares,
+  faPrint,
+  faThList,
+} from '@fortawesome/free-solid-svg-icons';
 
 const ListForm = ({
   submitedListName,
@@ -89,7 +98,7 @@ const ListForm = ({
     return <Alert color='info'>Something went wrong...</Alert>;
   if (request.success)
     return (
-      <Container>
+      <Container className='p-3'>
         <section>
           <ListNameForm
             subbmitedName={submitedListName}
@@ -110,7 +119,10 @@ const ListForm = ({
                 removeItem={handleItemRemove}
               />
 
-              <Button onClick={handlePrint}>Print list</Button>
+              <Button onClick={handlePrint}>
+                <FontAwesomeIcon icon={faPrint} className={styles.icon} />
+                Print list
+              </Button>
             </div>
           )}
         </section>
@@ -126,6 +138,13 @@ const ListForm = ({
               {' '}
               <form onSubmit={(e) => handleListSubmit(e)}>
                 <Button type='submit' disabled={user !== null ? false : true}>
+                  {buttonName === 'Edit that list' && (
+                    <FontAwesomeIcon icon={faEdit} className={styles.icon} />
+                  )}
+                  {buttonName === 'Add to my lists' && (
+                    <FontAwesomeIcon icon={faThList} className={styles.icon} />
+                  )}
+
                   {buttonName}
                 </Button>
               </form>
@@ -150,9 +169,12 @@ const ListForm = ({
           onHide={handleClose}
           backdrop='static'
           size='lg'
+          className={styles.modal}
         >
           <Modal.Header closeButton className='d-flex justify-content-center'>
-            <Modal.Title>Your list was succesfully added</Modal.Title>
+            <Modal.Title className='d-flex justify-content-center'>
+              Your list was succesfully added
+            </Modal.Title>
           </Modal.Header>
           <Modal.Body className='d-flex justify-content-center'>
             What do you want to do now?

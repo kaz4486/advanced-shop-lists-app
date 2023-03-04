@@ -5,3 +5,15 @@
   color: $color-dark-active;
   background-color: $color-light-green;
 }
+
+.icon {
+  min-width: 1rem;
+  min-height: 1rem;
+  top: 45%;
+  left: 45%;
+  margin-right: 0.5rem;
+}
+
+.modal {
+  color: $color-dark-green;
+}

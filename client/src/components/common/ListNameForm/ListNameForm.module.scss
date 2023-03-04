@@ -4,7 +4,7 @@
   //   justify-content: center;
   //   display: flex;
   color: $color-white-background;
-  h2 {
+  h1 {
     display: inline-block;
     margin-right: 2rem;
   }
@@ -24,5 +24,13 @@
 
   p {
     font-size: 1rem;
+  }
+
+  .icon {
+    min-width: 1rem;
+    min-height: 1rem;
+    top: 45%;
+    left: 45%;
+    margin-right: 0.5rem;
   }
 }

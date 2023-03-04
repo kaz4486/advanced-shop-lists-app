@@ -1,3 +1,9 @@
+import {
+  faList,
+  faNotesMedical,
+  faNoteSticky,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { useForm, useFieldArray, useWatch, Controller } from 'react-hook-form';
@@ -215,7 +221,8 @@ const ItemsForm = ({ system, setSubmitedListError, id, items }) => {
         })}
         <Row className='d-flex justify-content-center mb-5'>
           <Button type='submit' onClick={() => {}} className disabled={false}>
-            Create
+            <FontAwesomeIcon icon={faNotesMedical} className={styles.icon} />
+            Add item(s)
           </Button>
         </Row>
         <Row className='mb-5'>

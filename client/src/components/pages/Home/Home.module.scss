@@ -2,9 +2,10 @@
 
 .home {
   height: 60vh;
+
   img {
     object-fit: cover;
-    width: 100vw;
+
     height: 60vh;
     z-index: -1;
     position: absolute;
@@ -43,6 +44,14 @@
   }
   .buttons {
     position: relative;
-    margin: 200px 50px;
+    margin: 200px 0;
+  }
+
+  .icon {
+    min-width: 1rem;
+    min-height: 1rem;
+    top: 45%;
+    left: 45%;
+    margin-right: 0.5rem;
   }
 }

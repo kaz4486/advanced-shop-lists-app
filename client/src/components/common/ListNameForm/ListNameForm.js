@@ -1,3 +1,5 @@
+import { faEdit, faFileEdit } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import SmallButton from '../SmallButton/SmallButton';
@@ -32,7 +34,7 @@ const ListNameForm = ({
     <Container>
       <div className={styles.form_section}>
         <Row>
-          {subbmitedName && <h2>{subbmitedName}</h2>}
+          {subbmitedName && <h1>{subbmitedName}</h1>}
 
           {!subbmitedName && (
             <form
@@ -63,6 +65,7 @@ const ListNameForm = ({
         <Row className='d-flex justify-content-center'>
           {subbmitedName && (
             <SmallButton onClick={() => setSubmitedListName('')}>
+              <FontAwesomeIcon icon={faEdit} className={styles.icon} />
               Edit name
             </SmallButton>
           )}

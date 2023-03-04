@@ -1,3 +1,12 @@
+import {
+  faArrowCircleLeft,
+  faArrowLeft,
+  faBackspace,
+  faBackward,
+  faBackwardStep,
+  faPlus,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
 import { Alert, Col, Row, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
@@ -120,38 +129,50 @@ const EditList = () => {
 
   return (
     <div>
-      <h1 className={styles.header_text}>Edit list</h1>
-      <Row className={styles.form}>
-        <Col xs={12} xl={7}>
-          <ListForm
-            submitedListName={submitedListName}
-            submitListNameError={submitListNameError}
-            submitListItemError={submitListItemError}
-            setSubmitedListName={setSubmitedListName}
-            setSubmitedListItemError={setSubmitedListItemError}
-            setSubmitedListNameError={setSubmitedListNameError}
-            handleListSubmit={handleListSubmit}
-            items={items}
-            // setItems={setItems}
-            user={user}
-            buttonName='Edit that list'
-            id={id}
-          />
-          <Row className='d-flex justify-content-start'>
-            <Col xs={2}>
-              <Link to={'/lists/' + id}>
-                <SmallButton>Back to lists</SmallButton>
-              </Link>
+      <Row className='w-100 m-0 p-0'>
+        <h1 className={styles.header_text}>Edit list</h1>
+        <div>
+          <Row className={styles.row}>
+            <Col xs={12} xl={7} className={styles.form}>
+              <div className='p-3'>
+                <ListForm
+                  submitedListName={submitedListName}
+                  submitListNameError={submitListNameError}
+                  submitListItemError={submitListItemError}
+                  setSubmitedListName={setSubmitedListName}
+                  setSubmitedListItemError={setSubmitedListItemError}
+                  setSubmitedListNameError={setSubmitedListNameError}
+                  handleListSubmit={handleListSubmit}
+                  items={items}
+                  // setItems={setItems}
+                  user={user}
+                  buttonName='Edit that list'
+                  id={id}
+                />
+                <Row className='d-flex justify-content-start'>
+                  <Col xs={2} className='m-3'>
+                    <Link to={'/lists/' + id}>
+                      <SmallButton>
+                        <FontAwesomeIcon
+                          icon={faArrowCircleLeft}
+                          className={styles.icon}
+                        />
+                        Back to lists
+                      </SmallButton>
+                    </Link>
+                  </Col>
+                </Row>
+              </div>
+            </Col>
+            <Col xs={0} xl={5} className={styles.image_col}>
+              {' '}
+              <img
+                src={`${process.env.PUBLIC_URL}/images/pexels-nataliya-vaitkevich-6214376.jpg`}
+                alt='shopping list'
+              />
             </Col>
           </Row>
-        </Col>
-        <Col xs={0} xl={5} className={styles.image_col}>
-          {' '}
-          <img
-            src={`${process.env.PUBLIC_URL}/images/pexels-nataliya-vaitkevich-6214376.jpg`}
-            alt='shopping list'
-          />
-        </Col>
+        </div>
       </Row>
     </div>
   );

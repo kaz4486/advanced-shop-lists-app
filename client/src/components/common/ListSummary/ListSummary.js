@@ -9,7 +9,7 @@ const ListSummary = ({ list }) => {
         <h3>{list.name}</h3>
         <p>{list.publicationDate}</p>
         <Link to={'/lists/' + list._id}>
-          <SmallButton>view more</SmallButton>
+          <SmallButton>View more</SmallButton>
         </Link>
       </div>
     </Container>

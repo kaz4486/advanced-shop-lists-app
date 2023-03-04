@@ -15,6 +15,8 @@ import ListItem from '../../common/ListItem/ListItem';
 import { getUser } from '../../../redux/userRedux';
 import SmallButton from '../../common/SmallButton/SmallButton';
 import styles from './List.module.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowCircleLeft } from '@fortawesome/free-solid-svg-icons';
 
 const List = () => {
   const { id } = useParams();
@@ -68,13 +70,13 @@ const List = () => {
           <Col xs={6} className='d-flex justify-content-end'>
             {' '}
             <Link to={'/lists/edit/' + list._id}>
-              <SmallButton>edit</SmallButton>
+              <SmallButton>Edit</SmallButton>
             </Link>
           </Col>
           <Col xs={6} className='d-flex justify-content-start'>
             {' '}
             <SmallButton className='red' onClick={handleShow}>
-              delete
+              Delete
             </SmallButton>
           </Col>
         </Row>
@@ -82,12 +84,18 @@ const List = () => {
         <Row className='d-flex justify-content-start'>
           <Col xs={2}>
             <Link to={'/lists/'}>
-              <SmallButton>Back to lists</SmallButton>
+              <SmallButton>
+                <FontAwesomeIcon
+                  icon={faArrowCircleLeft}
+                  className={styles.icon}
+                />
+                Back to lists
+              </SmallButton>
             </Link>
           </Col>
         </Row>
 
-        <Modal show={showModal} onHide={handleClose}>
+        <Modal show={showModal} onHide={handleClose} className={styles.modal}>
           <Modal.Header closeButton>
             <Modal.Title>Are you sure?</Modal.Title>
           </Modal.Header>

@@ -41,11 +41,22 @@ const Navbar = () => {
               className={({ isActive }) =>
                 isActive ? styles.linkActive : styles.link
               }
+              to='/list/ad'
+            >
+              <span>Create</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? styles.linkActive : styles.link
+              }
               to='/lists'
             >
               <span>Lists</span>
             </NavLink>
           </li>
+
           {user === null && (
             <li>
               <NavLink

@@ -12,7 +12,15 @@
   margin-bottom: 0;
   text-align: center;
   padding: 10px;
+  max-width: 100vw;
 }
+.row {
+  padding: 0;
+  width: 100%;
+  justify-content: center;
+  margin: 0;
+}
+
 .form {
   background-color: rgba(136, 174, 177, 1);
   background-image: linear-gradient(
@@ -25,17 +33,29 @@
     rgba(94, 156, 153, 1) 90%
   );
 }
+.icon {
+  min-width: 1rem;
+  min-height: 1rem;
+  top: 45%;
+  left: 45%;
+  margin-right: 0.5rem;
+}
 
 .image_col {
   padding: 0;
+
   img {
-    width: 45vw;
+    // max-width: fit-content;
     // min-height: 105vh;
     min-height: 100%;
+    max-width: 100%;
   }
 }
 
 @media (max-width: 1200px) {
+  .form {
+    padding: 3rem;
+  }
   .image_col {
     img {
       visibility: hidden;
