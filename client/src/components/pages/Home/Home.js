@@ -27,34 +27,21 @@ const Home = () => {
           <h1>Make shopping lists great again!</h1>
         </div>
         <div className={styles.buttons}>
-          <Row className='d-flex justify-content-center'>
-            <Col
-              xs={12}
-              md={6}
-              className='text-center d-flex justify-content-end '
-            >
-              <Link to={'/list/ad'}>
-                {' '}
-                <Button>
-                  <FontAwesomeIcon
-                    icon={faPlusCircle}
-                    className={styles.icon}
-                  />
-                  Create list
-                </Button>
-              </Link>
-            </Col>
-            <Col
-              xs={12}
-              md={6}
-              className='text-center d-flex justify-content-start'
-            >
+          <div className='d-flex justify-content-center'>
+            <Link to={'/list/ad'} className='m-4'>
+              {' '}
+              <Button>
+                <FontAwesomeIcon icon={faPlusCircle} className={styles.icon} />
+                Create list
+              </Button>
+            </Link>
+            <div className='m-4'>
               <Button onClick={handleButtonClick}>
                 <FontAwesomeIcon icon={faThList} className={styles.icon} />
                 All my lists
               </Button>
-            </Col>
-          </Row>
+            </div>
+          </div>
         </div>
       </Row>
     </div>
