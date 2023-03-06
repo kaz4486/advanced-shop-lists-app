@@ -97,7 +97,7 @@ const ListForm = ({
     return <Alert color='info'>Something went wrong...</Alert>;
   if (request.success)
     return (
-      <Container className='p-3'>
+      <Container className={styles.list_form}>
         <section>
           <ListNameForm
             submitedName={submitedListName}
@@ -109,7 +109,7 @@ const ListForm = ({
         <section>
           {/* {items.length !== 0 && <ItemBar />} */}
           {items.length !== 0 && (
-            <div>
+            <div className='mb-2'>
               <ItemsList
                 ref={componentRef}
                 items={items}

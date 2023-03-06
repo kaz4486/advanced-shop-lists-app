@@ -64,50 +64,49 @@ const AddList = () => {
     <div>
       <Row className='w-100 m-0 p-0'>
         <h1 className={styles.header_text}>Add your list!</h1>
-        <div>
-          <Row className={styles.row}>
-            <Col xs={12} xl={7} className={styles.form}>
-              <div className='p-5'>
-                <ListForm
-                  submitedListName={submitedListName}
-                  submitListNameError={submitListNameError}
-                  submitListItemError={submitListItemError}
-                  setSubmitedListName={setSubmitedListName}
-                  setSubmitedListItemError={setSubmitedListItemError}
-                  setSubmitedListNameError={setSubmitedListNameError}
-                  handleListSubmit={handleListSubmit}
-                  items={items}
-                  user={user}
-                  buttonName='Add to my lists'
-                  showModal={showModal}
-                  // setShowModal={setShowModal}
-                  handleClose={handleClose}
-                />
-                <Row className='d-flex justify-content-start'>
-                  <Col xs={2} className='m-3'>
-                    <Link to={'/'}>
-                      <SmallButton>
-                        <FontAwesomeIcon
-                          icon={faArrowCircleLeft}
-                          className={styles.icon}
-                        />
-                        Back to home
-                      </SmallButton>
-                    </Link>
-                  </Col>
-                </Row>
-              </div>
-            </Col>
 
-            <Col xs={0} xl={5} className={styles.image_col}>
-              {' '}
-              <img
-                src={`${process.env.PUBLIC_URL}/images/pexels-nataliya-vaitkevich-6214376.jpg`}
-                alt='shopping list'
+        <Row className={styles.row}>
+          <Col xs={12} xl={7} className={styles.form}>
+            <div className='p-2'>
+              <ListForm
+                submitedListName={submitedListName}
+                submitListNameError={submitListNameError}
+                submitListItemError={submitListItemError}
+                setSubmitedListName={setSubmitedListName}
+                setSubmitedListItemError={setSubmitedListItemError}
+                setSubmitedListNameError={setSubmitedListNameError}
+                handleListSubmit={handleListSubmit}
+                items={items}
+                user={user}
+                buttonName='Add to my lists'
+                showModal={showModal}
+                // setShowModal={setShowModal}
+                handleClose={handleClose}
               />
-            </Col>
-          </Row>
-        </div>
+              <Row className='d-flex justify-content-start'>
+                <Col xs={2} className='m-3'>
+                  <Link to={'/'}>
+                    <SmallButton>
+                      <FontAwesomeIcon
+                        icon={faArrowCircleLeft}
+                        className={styles.icon}
+                      />
+                      Back to home
+                    </SmallButton>
+                  </Link>
+                </Col>
+              </Row>
+            </div>
+          </Col>
+
+          <Col xs={0} xl={5} className={styles.image_col}>
+            {' '}
+            <img
+              src={`${process.env.PUBLIC_URL}/images/pexels-nataliya-vaitkevich-6214376.jpg`}
+              alt='shopping list'
+            />
+          </Col>
+        </Row>
       </Row>
     </div>
   );

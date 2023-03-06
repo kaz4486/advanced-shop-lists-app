@@ -1,22 +1,25 @@
 @import '../../../styles/settings.scss';
 
-section {
-  margin-bottom: 2rem;
-  text-align: center;
-}
+.list_form {
+  padding: 1rem;
+  section {
+    margin-bottom: 2rem;
+    text-align: center;
+  }
 
-.icon {
-  min-width: 1rem;
-  min-height: 1rem;
-  top: 45%;
-  left: 45%;
-  margin-right: 0.5rem;
-}
+  .icon {
+    min-width: 1rem;
+    min-height: 1rem;
+    top: 45%;
+    left: 45%;
+    margin-right: 0.5rem;
+  }
 
-.modal {
-  color: $color-dark-green;
-}
+  .modal {
+    color: $color-dark-green;
+  }
 
-p {
-  color: $color-dark-active;
+  p {
+    color: $color-dark-active;
+  }
 }

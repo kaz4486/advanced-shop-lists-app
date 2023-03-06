@@ -140,50 +140,49 @@ const EditList = () => {
     <div>
       <Row className='w-100 m-0 p-0'>
         <h1 className={styles.header_text}>Edit list</h1>
-        <div>
-          <Row className={styles.row}>
-            <Col xs={12} xl={7} className={styles.form}>
-              <div className='p-3'>
-                <ListForm
-                  submitedListName={submitedListName || listToEdit.name}
-                  submitListNameError={submitListNameError}
-                  submitListItemError={submitListItemError}
-                  setSubmitedListName={setSubmitedListName}
-                  setSubmitedListItemError={setSubmitedListItemError}
-                  setSubmitedListNameError={setSubmitedListNameError}
-                  handleListSubmit={handleListSubmit}
-                  items={items}
-                  // setItems={setItems}
-                  user={user}
-                  buttonName='Edit that list'
-                  id={id}
-                  showModal={showModal}
-                  handleClose={handleClose}
-                />
-                <Row className='d-flex justify-content-start'>
-                  <Col xs={2} className='m-3'>
-                    <Link to={'/lists/' + id}>
-                      <SmallButton>
-                        <FontAwesomeIcon
-                          icon={faArrowCircleLeft}
-                          className={styles.icon}
-                        />
-                        Back to lists
-                      </SmallButton>
-                    </Link>
-                  </Col>
-                </Row>
-              </div>
-            </Col>
-            <Col xs={0} xl={5} className={styles.image_col}>
-              {' '}
-              <img
-                src={`${process.env.PUBLIC_URL}/images/pexels-nataliya-vaitkevich-6214376.jpg`}
-                alt='shopping list'
+
+        <Row className={styles.row}>
+          <Col xs={12} xl={7} className={styles.form}>
+            <div className='p-3'>
+              <ListForm
+                submitedListName={submitedListName || listToEdit.name}
+                submitListNameError={submitListNameError}
+                submitListItemError={submitListItemError}
+                setSubmitedListName={setSubmitedListName}
+                setSubmitedListItemError={setSubmitedListItemError}
+                setSubmitedListNameError={setSubmitedListNameError}
+                handleListSubmit={handleListSubmit}
+                items={items}
+                // setItems={setItems}
+                user={user}
+                buttonName='Edit that list'
+                id={id}
+                showModal={showModal}
+                handleClose={handleClose}
               />
-            </Col>
-          </Row>
-        </div>
+              <Row className='d-flex justify-content-start'>
+                <Col xs={2} className='m-3'>
+                  <Link to={'/lists/' + id}>
+                    <SmallButton>
+                      <FontAwesomeIcon
+                        icon={faArrowCircleLeft}
+                        className={styles.icon}
+                      />
+                      Back to lists
+                    </SmallButton>
+                  </Link>
+                </Col>
+              </Row>
+            </div>
+          </Col>
+          <Col xs={0} xl={5} className={styles.image_col}>
+            {' '}
+            <img
+              src={`${process.env.PUBLIC_URL}/images/pexels-nataliya-vaitkevich-6214376.jpg`}
+              alt='shopping list'
+            />
+          </Col>
+        </Row>
       </Row>
     </div>
   );

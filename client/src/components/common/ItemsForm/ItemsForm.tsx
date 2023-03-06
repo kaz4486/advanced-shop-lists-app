@@ -189,7 +189,10 @@ const ItemsForm = ({ system, setSubmitedListError, id, items }) => {
                     <p>{errors.item?.[index]?.volume?.message}</p>
                   </label>
                 </Col>
-                <Col xs={1} className='d-flex align-items-center'>
+                <Col
+                  xs={2}
+                  className='d-flex align-items-center justify-content-center'
+                >
                   <SmallButton
                     type='button'
                     onClick={() =>
@@ -205,7 +208,10 @@ const ItemsForm = ({ system, setSubmitedListError, id, items }) => {
                     Reset
                   </SmallButton>
                 </Col>
-                <Col xs={1} className='d-flex align-items-center'>
+                <Col
+                  xs={2}
+                  className='d-flex align-items-center justify-content-center'
+                >
                   {' '}
                   <SmallButton
                     type='button'
@@ -219,12 +225,6 @@ const ItemsForm = ({ system, setSubmitedListError, id, items }) => {
             </section>
           );
         })}
-        <Row className='d-flex justify-content-center mb-5'>
-          <Button type='submit' onClick={() => {}} className disabled={false}>
-            <FontAwesomeIcon icon={faNotesMedical} className={styles.icon} />
-            Add item(s)
-          </Button>
-        </Row>
         <Row className='mb-5'>
           <SmallButton
             type='button'
@@ -254,6 +254,12 @@ const ItemsForm = ({ system, setSubmitedListError, id, items }) => {
           >
             Add form at the end
           </SmallButton>
+        </Row>
+        <Row className='d-flex justify-content-center mb-5'>
+          <Button type='submit' onClick={() => {}} className disabled={false}>
+            <FontAwesomeIcon icon={faNotesMedical} className={styles.icon} />
+            Add item(s)
+          </Button>
         </Row>
       </form>
     </Container>

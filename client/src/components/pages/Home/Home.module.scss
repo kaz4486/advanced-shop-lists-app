@@ -6,7 +6,7 @@
   img {
     object-fit: cover;
 
-    height: 60vh;
+    height: 65vh;
     z-index: -1;
     position: absolute;
     top: 0;
@@ -36,7 +36,7 @@
       display: inline-block;
       opacity: 1;
       margin: 0;
-      padding: 5px;
+      padding: 0.5rem;
       color: $color-dark-green;
 
       // opacity: ;
@@ -44,7 +44,7 @@
   }
   .buttons {
     position: relative;
-    margin: 200px 0;
+    top: 200px;
   }
 
   .icon {
@@ -53,5 +53,21 @@
     top: 45%;
     left: 45%;
     margin-right: 0.5rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  .home {
+    height: 90vh;
+
+    img {
+      object-fit: cover;
+
+      height: 95vh;
+      z-index: -1;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
   }
 }
