@@ -44,10 +44,9 @@ const ListForm = ({
 }) => {
   const dispatch = useDispatch();
 
-  console.log(items);
-
   const request = useSelector(getRequest);
   // const user = useSelector(getUser);
+  console.log(submitedListName);
 
   const navigate = useNavigate();
 
@@ -101,14 +100,12 @@ const ListForm = ({
       <Container className='p-3'>
         <section>
           <ListNameForm
-            subbmitedName={submitedListName}
+            submitedName={submitedListName}
             setSubmitedListName={setSubmitedListName}
             setSubmitedListNameError={setSubmitedListNameError}
           />
         </section>
-        <section>
-          <SwitchSystem action={handleSwitchSystem} system={system} />
-        </section>
+
         <section>
           {/* {items.length !== 0 && <ItemBar />} */}
           {items.length !== 0 && (
@@ -125,6 +122,9 @@ const ListForm = ({
               </Button>
             </div>
           )}
+        </section>
+        <section>
+          <SwitchSystem action={handleSwitchSystem} system={system} />
         </section>
         <section>
           <ItemsForm
@@ -173,7 +173,9 @@ const ListForm = ({
         >
           <Modal.Header closeButton className='d-flex justify-content-center'>
             <Modal.Title className='d-flex justify-content-center'>
-              Your list was succesfully added
+              {buttonName === 'Add to my lists'
+                ? 'Your list was succesfully added'
+                : 'Your list was succesfully edited'}
             </Modal.Title>
           </Modal.Header>
           <Modal.Body className='d-flex justify-content-center'>
@@ -187,11 +189,21 @@ const ListForm = ({
                 </Button>
               </Col>
 
-              <Col xs={12} md={4}>
-                <Button variant='danger' onClick={handleCreateNewList}>
-                  Add new list
-                </Button>
-              </Col>
+              {buttonName === 'Add to my lists' && (
+                <Col xs={12} md={4}>
+                  <Button variant='danger' onClick={handleCreateNewList}>
+                    Add new list
+                  </Button>
+                </Col>
+              )}
+
+              {buttonName === 'Edit that list' && (
+                <Col xs={12} md={4}>
+                  <Button variant='danger' onClick={handleClose}>
+                    Continue editing
+                  </Button>
+                </Col>
+              )}
 
               <Col xs={12} md={4}>
                 <Button variant='danger' onClick={() => navigate('/')}>

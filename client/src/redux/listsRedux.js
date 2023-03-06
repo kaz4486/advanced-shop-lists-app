@@ -101,7 +101,7 @@ export const editListRequest = (data, id) => {
         { headers: { 'Content-Type': 'application/json' } }
       );
       console.log(res.data.modifiedList);
-      dispatch(editList(res.data.modifiedList));
+      await dispatch(editList(res.data.modifiedList));
       dispatch(endRequest({ name: EDIT_LIST }));
     } catch (e) {
       dispatch(errorRequest({ name: EDIT_LIST, error: e.message }));
@@ -169,7 +169,7 @@ const listsReducer = (statePart = initialState, action = {}) => {
     case ERROR_REQUEST:
       return {
         ...statePart,
-        request: { pending: false, error: true, success: false },
+        request: { pending: false, error: action.error, success: false },
       };
     default:
       return statePart;

@@ -61,6 +61,7 @@ const List = () => {
   if (request.success)
     return (
       <section className={styles.list}>
+        <h2 className='mb-5'>{list.name}</h2>
         <ItemBar />
         {list.items.map((item) => (
           <ListItem item={item} key={item.name} />

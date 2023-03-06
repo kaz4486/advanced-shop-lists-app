@@ -111,7 +111,7 @@ const ItemsForm = ({ system, setSubmitedListError, id, items }) => {
         {fields.map((field, index) => {
           return (
             <section key={field.id}>
-              <Row>
+              <Row className={styles.item}>
                 {doubleNameError && (
                   <p>You can't add item with the same name</p>
                 )}

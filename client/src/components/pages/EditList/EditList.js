@@ -42,13 +42,16 @@ const EditList = () => {
   //   const items = list?.items;
   const items = useSelector(getItems);
   const request = useSelector(getRequest);
+  console.log(request);
   console.log('list', list);
-  console.log('list items', list?.items);
-  console.log('items', items);
 
   //   const request = useSelector(getRequest);
 
   //   const [items, setItems] = useState(list?.items);
+
+  const [showModal, setShowModal] = useState(false);
+
+  const handleClose = () => setShowModal(false);
 
   const [submitedListName, setSubmitedListName] = useState(list?.name);
 
@@ -71,28 +74,33 @@ const EditList = () => {
 
   useEffect(() => {
     list?.items.forEach((item) => dispatch(addItem({ ...item })));
-    setSubmitedListName(list?.name);
   }, [dispatch, list]);
 
-  useEffect(() => {
-    return () => {
-      dispatch(removeAllItems);
-    };
-  });
+  // useEffect(() => {
+  //   return () => {
+  //     dispatch(removeAllItems);
+  //   };
+  // });
+  let listToEdit = {};
 
   const handleListSubmit = (e) => {
     e.preventDefault();
     setSubmitedListItemError(false);
     setSubmitedListNameError(false);
-    let listToEdit = {};
+    // let listToEdit = {};
 
     listToEdit.name = submitedListName;
+    console.log(listToEdit.name);
 
     listToEdit.items = items;
     listToEdit.user = user;
 
     if (submitedListName && items.length !== 0) {
+      setSubmitedListName(listToEdit.name);
+
       dispatch(editListRequest(listToEdit, id));
+      // dispatch(loadListsRequest());
+      setShowModal(true);
     } else if (!submitedListName && items.length !== 0) {
       setSubmitedListNameError(true);
     } else if (items.length === 0 && submitedListName) {
@@ -103,29 +111,30 @@ const EditList = () => {
     }
   };
 
-  //   if (request.pending)
-  //     return (
-  //       <Spinner className='mt-3' animation='border' role='status'>
-  //         <span className='visually-hidden'>Loading...</span>
-  //       </Spinner>
-  //     );
-
-  // if (request.pending)
+  // if (!list)
   //   return (
   //     <Spinner className='mt-3' animation='border' role='status'>
   //       <span className='visually-hidden'>Loading...</span>
   //     </Spinner>
   //   );
 
+  // if (!list)
+  //   if (list)
+  // return (
+  //   <Spinner className='mt-3' animation='border' role='status'>
+  //     <span className='visually-hidden'>Loading...</span>
+  //   </Spinner>
+  // );
+
   // if (list?.items.length === 0)
   //   return <Alert color='info'>Something went wrong...</Alert>;
 
-  if (!list)
-    return (
-      <Spinner className='mt-3' animation='border' role='status'>
-        <span className='visually-hidden'>Loading...</span>
-      </Spinner>
-    );
+  // if (!list)
+  //   return (
+  //     <Spinner className='mt-3' animation='border' role='status'>
+  //       <span className='visually-hidden'>Loading...</span>
+  //     </Spinner>
+  //   );
 
   return (
     <div>
@@ -136,7 +145,7 @@ const EditList = () => {
             <Col xs={12} xl={7} className={styles.form}>
               <div className='p-3'>
                 <ListForm
-                  submitedListName={submitedListName}
+                  submitedListName={submitedListName || listToEdit.name}
                   submitListNameError={submitListNameError}
                   submitListItemError={submitListItemError}
                   setSubmitedListName={setSubmitedListName}
@@ -148,6 +157,8 @@ const EditList = () => {
                   user={user}
                   buttonName='Edit that list'
                   id={id}
+                  showModal={showModal}
+                  handleClose={handleClose}
                 />
                 <Row className='d-flex justify-content-start'>
                   <Col xs={2} className='m-3'>

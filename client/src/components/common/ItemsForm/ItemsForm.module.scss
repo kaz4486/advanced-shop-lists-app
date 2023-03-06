@@ -4,6 +4,7 @@ form {
   span {
     margin-right: 1.5rem;
     margin-left: 1.5rem;
+    color: $color-dark-active;
   }
   input {
     width: 6rem;
@@ -23,5 +24,10 @@ form {
     top: 45%;
     left: 45%;
     margin-right: 0.5rem;
+  }
+  .item {
+    border-radius: 5px;
+    padding: 1rem;
+    background-color: $color-light-green;
   }
 }

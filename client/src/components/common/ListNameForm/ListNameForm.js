@@ -6,7 +6,7 @@ import SmallButton from '../SmallButton/SmallButton';
 import styles from './ListNameForm.module.scss';
 
 const ListNameForm = ({
-  subbmitedName,
+  submitedName,
   setSubmitedListName,
   setSubmitedListNameError,
 }) => {
@@ -34,9 +34,9 @@ const ListNameForm = ({
     <Container>
       <div className={styles.form_section}>
         <Row>
-          {subbmitedName && <h1>{subbmitedName}</h1>}
+          {submitedName && <h1>{submitedName}</h1>}
 
-          {!subbmitedName && (
+          {!submitedName && (
             <form
               onSubmit={(e) => handleListNameSubmit(e)}
               className={styles.form}
@@ -63,7 +63,7 @@ const ListNameForm = ({
           )}
         </Row>
         <Row className='d-flex justify-content-center'>
-          {subbmitedName && (
+          {submitedName && (
             <SmallButton onClick={() => setSubmitedListName('')}>
               <FontAwesomeIcon icon={faEdit} className={styles.icon} />
               Edit name

@@ -7,7 +7,6 @@ import styles from './ItemsList.module.scss';
 import ItemBar from '../../common/ItemBar/ItemBar';
 
 const ItemsList = forwardRef(({ items, removeItem }, ref) => {
-  console.log(items);
   const [itemsState, setItemsState] = useState(null);
 
   useEffect(() => {
@@ -15,7 +14,6 @@ const ItemsList = forwardRef(({ items, removeItem }, ref) => {
   }, [items]);
 
   const handleOnDragEnd = (result) => {
-    console.log(result);
     if (!result.destination) return;
 
     const items = Array.from(itemsState);
