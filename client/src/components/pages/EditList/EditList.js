@@ -142,7 +142,7 @@ const EditList = () => {
         <h1 className={styles.header_text}>Edit list</h1>
 
         <Row className={styles.row}>
-          <Col xs={12} xl={7} className={styles.form}>
+          <Col sm={12} xl={7} className={styles.form}>
             <div className='p-3'>
               <ListForm
                 submitedListName={submitedListName || listToEdit.name}
@@ -161,7 +161,7 @@ const EditList = () => {
                 handleClose={handleClose}
               />
               <Row className='d-flex justify-content-start'>
-                <Col xs={2} className='m-3'>
+                <Col sm={2} className='m-3'>
                   <Link to={'/lists/' + id}>
                     <SmallButton>
                       <FontAwesomeIcon
@@ -175,7 +175,7 @@ const EditList = () => {
               </Row>
             </div>
           </Col>
-          <Col xs={0} xl={5} className={styles.image_col}>
+          <Col sm={0} xl={5} className={styles.image_col}>
             {' '}
             <img
               src={`${process.env.PUBLIC_URL}/images/pexels-nataliya-vaitkevich-6214376.jpg`}

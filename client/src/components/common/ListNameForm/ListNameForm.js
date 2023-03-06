@@ -42,7 +42,7 @@ const ListNameForm = ({
               className={styles.form}
             >
               <Row className='align-items-center mb-2 '>
-                <Col xs={12} md={6} className={styles.left_column}>
+                <Col sm={12} md={6} className={styles.left_column}>
                   <input
                     type='text'
                     value={listName}
@@ -50,7 +50,7 @@ const ListNameForm = ({
                     placeholder='Insert list name...'
                   />
                 </Col>
-                <Col xs={12} md={6} className={styles.right_column}>
+                <Col sm={12} md={6} className={styles.right_column}>
                   <SmallButton type='submit'>Submit list name</SmallButton>
                 </Col>
               </Row>

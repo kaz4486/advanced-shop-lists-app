@@ -13,11 +13,11 @@ const SwitchSystem = ({ action, system }) => {
   return (
     <div>
       <Row>
-        <Col xs={1}></Col>
-        <Col xs={3} className='d-flex align-items-center'>
+        <Col sm={1}></Col>
+        <Col sm={3} className='d-flex align-items-center'>
           <h5 className='m-0'>Metric system:</h5>
         </Col>
-        <Col xs={2}>
+        <Col sm={2}>
           <SmallButton
             onClick={action}
             className={clsx(system === 'metric' ? 'active' : undefined)}
@@ -25,7 +25,7 @@ const SwitchSystem = ({ action, system }) => {
             Metric
           </SmallButton>
         </Col>
-        <Col xs={2}>
+        <Col sm={2}>
           <SmallButton
             onClick={action}
             className={clsx(system === 'imperial' ? 'active' : undefined)}
@@ -33,7 +33,7 @@ const SwitchSystem = ({ action, system }) => {
             Imperial
           </SmallButton>
         </Col>
-        <Col xs={2}></Col>
+        <Col sm={2}></Col>
       </Row>
     </div>
   );

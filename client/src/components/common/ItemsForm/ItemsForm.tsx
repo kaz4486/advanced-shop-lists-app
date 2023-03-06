@@ -115,7 +115,7 @@ const ItemsForm = ({ system, setSubmitedListError, id, items }) => {
                 {doubleNameError && (
                   <p>You can't add item with the same name</p>
                 )}
-                <Col xs={2}>
+                <Col xs={6} sm={3} md={2} className='d-flex flex-wrap'>
                   <label>
                     <span>name</span>
                     <input
@@ -132,7 +132,7 @@ const ItemsForm = ({ system, setSubmitedListError, id, items }) => {
                   </label>
                 </Col>
 
-                <Col xs={2}>
+                <Col xs={6} sm={3} md={2} className='d-flex flex-wrap'>
                   <label>
                     <span>amount</span>
                     <input
@@ -152,7 +152,7 @@ const ItemsForm = ({ system, setSubmitedListError, id, items }) => {
                   </label>
                 </Col>
 
-                <Col xs={2}>
+                <Col xs={6} sm={3} md={2} className='d-flex flex-wrap'>
                   <label>
                     <span>unit</span>
                     {system === 'metric' && (
@@ -179,7 +179,7 @@ const ItemsForm = ({ system, setSubmitedListError, id, items }) => {
                   </label>
                 </Col>
 
-                <Col xs={2}>
+                <Col xs={6} sm={3} md={2} className='d-flex  flex-wrap'>
                   <label>
                     <span>volume</span>
                     <ConditionallInput
@@ -190,7 +190,9 @@ const ItemsForm = ({ system, setSubmitedListError, id, items }) => {
                   </label>
                 </Col>
                 <Col
-                  xs={2}
+                  xs={6}
+                  sm={6}
+                  md={2}
                   className='d-flex align-items-center justify-content-center'
                 >
                   <SmallButton
@@ -209,7 +211,9 @@ const ItemsForm = ({ system, setSubmitedListError, id, items }) => {
                   </SmallButton>
                 </Col>
                 <Col
-                  xs={2}
+                  xs={6}
+                  sm={6}
+                  md={2}
                   className='d-flex align-items-center justify-content-center'
                 >
                   {' '}

@@ -6,22 +6,22 @@ const ItemBar = () => {
     <Container>
       <Row className={styles.bar}>
         {/* <div className={styles.bar}> */}
-        <Col xs={1}></Col>
+        <Col sm={1}></Col>
 
-        <Col xs={2}>
+        <Col sm={2}>
           <h4>Name</h4>
         </Col>
-        <Col xs={2}>
+        <Col sm={2}>
           <h4>Amount</h4>
         </Col>
-        <Col xs={2}>
+        <Col sm={2}>
           <h4>Unit</h4>
         </Col>
-        <Col xs={2}>
+        <Col sm={2}>
           <h4>Volume</h4>
         </Col>
 
-        <Col xs={1}></Col>
+        <Col sm={1}></Col>
         {/* </div> */}
       </Row>
     </Container>

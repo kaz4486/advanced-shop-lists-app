@@ -7,26 +7,26 @@ const ListItem = ({ item, removeAction }) => {
     return (
       <div key={item.id}>
         <Row>
-          <Col xs={1}></Col>
-          <Col xs={2}>
+          <Col sm={1}></Col>
+          <Col sm={2}>
             <p>{item.name}</p>
           </Col>
-          <Col xs={2}>
+          <Col sm={2}>
             <p>{item.amount}</p>
           </Col>
-          <Col xs={2}>
+          <Col sm={2}>
             <p>{item.unit}</p>
           </Col>
-          <Col xs={2}>
+          <Col sm={2}>
             <p>{item.volume}</p>
           </Col>
 
           {removeAction && (
-            <Col xs={2}>
+            <Col sm={2}>
               <SmallButton onClick={() => removeAction(item.id)}>x</SmallButton>
             </Col>
           )}
-          <Col xs={1}></Col>
+          <Col sm={1}></Col>
         </Row>
       </div>
     );

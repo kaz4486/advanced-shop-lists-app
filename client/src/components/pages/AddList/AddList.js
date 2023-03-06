@@ -64,9 +64,8 @@ const AddList = () => {
     <div>
       <Row className='w-100 m-0 p-0'>
         <h1 className={styles.header_text}>Add your list!</h1>
-
         <Row className={styles.row}>
-          <Col xs={12} xl={7} className={styles.form}>
+          <Col sm={12} xl={7} className={styles.form}>
             <div className='p-2'>
               <ListForm
                 submitedListName={submitedListName}
@@ -84,7 +83,7 @@ const AddList = () => {
                 handleClose={handleClose}
               />
               <Row className='d-flex justify-content-start'>
-                <Col xs={2} className='m-3'>
+                <Col sm={2} className='m-3'>
                   <Link to={'/'}>
                     <SmallButton>
                       <FontAwesomeIcon
@@ -99,7 +98,7 @@ const AddList = () => {
             </div>
           </Col>
 
-          <Col xs={0} xl={5} className={styles.image_col}>
+          <Col sm={0} xl={5} className={styles.image_col}>
             {' '}
             <img
               src={`${process.env.PUBLIC_URL}/images/pexels-nataliya-vaitkevich-6214376.jpg`}

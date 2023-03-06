@@ -53,7 +53,7 @@ const Lists = () => {
         <Container>
           <Row>
             {lists.map((list) => (
-              <Col xs={6} md={3} lg={2} key={list._id}>
+              <Col sm={6} md={3} lg={2} key={list._id}>
                 {' '}
                 <div className={styles.list_summary}>
                   <ListSummary list={list} />

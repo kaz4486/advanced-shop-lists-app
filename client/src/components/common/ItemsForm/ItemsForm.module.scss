@@ -31,3 +31,14 @@ form {
     background-color: $color-light-green;
   }
 }
+
+@media (max-width: 770px) {
+  form {
+    span {
+      margin: 0.5rem;
+    }
+    select {
+      margin: 0;
+    }
+  }
+}

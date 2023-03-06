@@ -68,13 +68,13 @@ const List = () => {
         ))}
 
         <Row className='d-flex justify-content-center my-5'>
-          <Col xs={6} className='d-flex justify-content-end'>
+          <Col sm={6} className='d-flex justify-content-end'>
             {' '}
             <Link to={'/lists/edit/' + list._id}>
               <SmallButton>Edit</SmallButton>
             </Link>
           </Col>
-          <Col xs={6} className='d-flex justify-content-start'>
+          <Col sm={6} className='d-flex justify-content-start'>
             {' '}
             <SmallButton className='red' onClick={handleShow}>
               Delete
@@ -83,7 +83,7 @@ const List = () => {
         </Row>
 
         <Row className='d-flex justify-content-start'>
-          <Col xs={2}>
+          <Col sm={2}>
             <Link to={'/lists/'}>
               <SmallButton>
                 <FontAwesomeIcon
