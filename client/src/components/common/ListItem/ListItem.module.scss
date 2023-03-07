@@ -1,0 +1,29 @@
+@import '../../../styles/settings.scss';
+
+.list {
+}
+
+.row {
+  //   justify-content: center;
+}
+.row > * {
+  //   height: 4rem;
+  align-self: center;
+}
+
+p {
+  margin: 0;
+}
+
+@media (max-width: 580px) {
+  .row {
+    flex-direction: column;
+    display: flex;
+  }
+  .row > * {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    height: 4rem;
+  }
+}

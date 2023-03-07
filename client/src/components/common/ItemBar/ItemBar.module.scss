@@ -4,4 +4,11 @@
   border-bottom: 1px solid $color-white-background;
   margin-bottom: 1rem;
   color: $color-dark-active;
+  display: flex;
+}
+
+@media (max-width: 580px) {
+  .bar {
+    flex-direction: column;
+  }
 }

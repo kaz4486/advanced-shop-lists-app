@@ -50,6 +50,7 @@ const ItemsList = forwardRef(({ items, removeItem }, ref) => {
                               ref={provided.innerRef}
                               {...provided.draggableProps}
                               {...provided.dragHandleProps}
+                              className={styles.item}
                             >
                               <ListItem item={item} removeAction={removeItem} />
                             </li>
