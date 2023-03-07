@@ -13,7 +13,13 @@ import Button from '../Button/Button';
 import SmallButton from '../SmallButton/SmallButton';
 import styles from './ItemsForm.module.scss';
 
-const ItemsForm = ({ system, setSubmitedListError, id, items }) => {
+const ItemsForm = ({
+  system,
+  setSubmitedListError,
+  id,
+  items,
+  setShowDraggAlert,
+}) => {
   const dispatch = useDispatch();
 
   const [doubleNameError, setDoubleNameError] = useState(false);
@@ -56,10 +62,11 @@ const ItemsForm = ({ system, setSubmitedListError, id, items }) => {
       itemNamesArray.includes(requestedItem.name)
     );
     if (doubleName) {
-      setDoubleNameError(true);
+      return setDoubleNameError(true);
     }
     data.item.forEach((element) => dispatch(addItem({ ...element })));
     // dispatch(edi)
+    setShowDraggAlert(true);
   };
 
   const ConditionallInput = ({ control, index, field }) => {

@@ -11,8 +11,11 @@ const ListNameForm = ({
   setSubmitedListNameError,
 }) => {
   const [listName, setListName] = useState('');
+
   const [listNameError, setListNameError] = useState(false);
   //   const [submittedListName, setSubmittedListName] = useState('');
+  console.log(submitedName);
+  console.log(listName);
 
   const handleListNameSubmit = (e) => {
     e.preventDefault();
@@ -21,6 +24,7 @@ const ListNameForm = ({
     } else {
       setListNameError(false);
       setSubmitedListName(listName);
+      setListName('');
     }
   };
 
@@ -28,6 +32,11 @@ const ListNameForm = ({
     setListName(value);
     setListNameError(false);
     setSubmitedListNameError(false);
+  };
+
+  const handleEditButton = () => {
+    setListName(submitedName);
+    setSubmitedListName(listName);
   };
 
   return (
@@ -64,7 +73,7 @@ const ListNameForm = ({
         </Row>
         <Row className='d-flex justify-content-center'>
           {submitedName && (
-            <SmallButton onClick={() => setSubmitedListName('')}>
+            <SmallButton onClick={() => handleEditButton()}>
               <FontAwesomeIcon icon={faEdit} className={styles.icon} />
               Edit name
             </SmallButton>

@@ -66,7 +66,7 @@ const AddList = () => {
         <h1 className={styles.header_text}>Add your list!</h1>
         <Row className={styles.row}>
           <Col sm={12} xl={7} className={styles.form}>
-            <div className='p-2'>
+            <div className='p-3'>
               <ListForm
                 submitedListName={submitedListName}
                 submitListNameError={submitListNameError}

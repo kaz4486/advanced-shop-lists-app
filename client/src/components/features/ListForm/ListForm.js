@@ -44,6 +44,9 @@ const ListForm = ({
 }) => {
   const dispatch = useDispatch();
 
+  const [showDraggAlert, setShowDraggAlert] = useState(false);
+  const [dontShowAlertAgain, setDontShowAlertAgain] = useState(false);
+
   const request = useSelector(getRequest);
   // const user = useSelector(getUser);
   console.log(submitedListName);
@@ -114,6 +117,9 @@ const ListForm = ({
                 ref={componentRef}
                 items={items}
                 removeItem={handleItemRemove}
+                showDraggAlert={showDraggAlert}
+                dontShowAlertAgain={dontShowAlertAgain}
+                setDontShowAlertAgain={setDontShowAlertAgain}
               />
 
               <Button onClick={handlePrint}>
@@ -132,6 +138,7 @@ const ListForm = ({
             setSubmitedListError={setSubmitedListItemError}
             id={id}
             items={items}
+            setShowDraggAlert={setShowDraggAlert}
           />
           <Row>
             <Col xs={12} sm={6}>

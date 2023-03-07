@@ -47,6 +47,9 @@ const EditList = () => {
 
   //   const request = useSelector(getRequest);
 
+  useEffect(() => {
+    dispatch(loadListsRequest());
+  }, []);
   //   const [items, setItems] = useState(list?.items);
 
   const [showModal, setShowModal] = useState(false);
@@ -69,11 +72,8 @@ const EditList = () => {
   // }, [dispatch, user]);
 
   useEffect(() => {
-    dispatch(loadListsRequest());
-  }, []);
-
-  useEffect(() => {
     list?.items.forEach((item) => dispatch(addItem({ ...item })));
+    setSubmitedListName(list?.name);
   }, [dispatch, list]);
 
   // useEffect(() => {
@@ -96,7 +96,7 @@ const EditList = () => {
     listToEdit.user = user;
 
     if (submitedListName && items.length !== 0) {
-      setSubmitedListName(listToEdit.name);
+      // setSubmitedListName(listToEdit.name);
 
       dispatch(editListRequest(listToEdit, id));
       // dispatch(loadListsRequest());
@@ -129,7 +129,7 @@ const EditList = () => {
   // if (list?.items.length === 0)
   //   return <Alert color='info'>Something went wrong...</Alert>;
 
-  // if (!list)
+  // if (items.length === 0)
   //   return (
   //     <Spinner className='mt-3' animation='border' role='status'>
   //       <span className='visually-hidden'>Loading...</span>
@@ -145,7 +145,7 @@ const EditList = () => {
           <Col sm={12} xl={7} className={styles.form}>
             <div className='p-3'>
               <ListForm
-                submitedListName={submitedListName || listToEdit.name}
+                submitedListName={submitedListName}
                 submitListNameError={submitListNameError}
                 submitListItemError={submitListItemError}
                 setSubmitedListName={setSubmitedListName}

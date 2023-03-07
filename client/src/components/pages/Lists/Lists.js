@@ -56,7 +56,7 @@ const Lists = () => {
               <Col sm={6} md={3} lg={2} key={list._id}>
                 {' '}
                 <div className={styles.list_summary}>
-                  <ListSummary list={list} />
+                  <ListSummary list={list} key={list._id} />
                 </div>
               </Col>
             ))}

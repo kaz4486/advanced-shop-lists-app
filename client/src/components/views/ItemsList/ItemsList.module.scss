@@ -2,6 +2,9 @@
 
 .container {
   margin: 4rem 0;
+  .alert_hidden {
+    display: none;
+  }
   .list {
     list-style: none;
     padding: 0;

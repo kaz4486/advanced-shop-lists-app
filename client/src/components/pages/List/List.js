@@ -26,6 +26,7 @@ const List = () => {
   const list = useSelector((state) => getListById(state, id));
   const request = useSelector(getRequest);
   const user = useSelector(getUser);
+  console.log(list);
 
   const [showModal, setShowModal] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
@@ -66,9 +67,9 @@ const List = () => {
           <h5>created at: {list.publicationDate}</h5>
         </div>
         <ItemBar />
-        <ul className={styles.list}>
+        <ul className={styles.list} key={list._id}>
           {list.items.map((item) => (
-            <li className={styles.item}>
+            <li className={styles.item} key={item.id}>
               <ListItem item={item} key={item.name} />
             </li>
           ))}
