@@ -6,7 +6,7 @@ const ItemBar = () => {
     <Container>
       <Row className={styles.bar}>
         {/* <div className={styles.bar}> */}
-        <Col sm={1}></Col>
+        <Col sm={2}></Col>
 
         <Col sm={2}>
           <h4>Name</h4>
@@ -21,7 +21,7 @@ const ItemBar = () => {
           <h4>Volume</h4>
         </Col>
 
-        <Col sm={1}></Col>
+        <Col sm={2}></Col>
         {/* </div> */}
       </Row>
     </Container>

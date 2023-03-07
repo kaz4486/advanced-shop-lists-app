@@ -60,12 +60,19 @@ const List = () => {
     return <Alert color='info'>Your list was succesfuly removed</Alert>;
   if (request.success)
     return (
-      <section className={styles.list}>
-        <h2 className='mb-5'>{list.name}</h2>
+      <section className={styles.section}>
+        <div className='mb-5'>
+          <h2>{list.name}</h2>
+          <h5>created at: {list.publicationDate}</h5>
+        </div>
         <ItemBar />
-        {list.items.map((item) => (
-          <ListItem item={item} key={item.name} />
-        ))}
+        <ul className={styles.list}>
+          {list.items.map((item) => (
+            <li className={styles.item}>
+              <ListItem item={item} key={item.name} />
+            </li>
+          ))}
+        </ul>
 
         <Row className='d-flex justify-content-center my-5'>
           <Col sm={6} className='d-flex justify-content-end'>
