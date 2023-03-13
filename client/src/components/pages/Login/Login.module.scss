@@ -1,0 +1,13 @@
+@import '../../../styles/settings.scss';
+
+.form {
+  color: $color-dark-active;
+  margin: 2rem 30%;
+  //   className='col-12 col-sm-3 mx-auto'
+}
+
+.form_control:focus {
+  border-color: $color-dark-green;
+  box-shadow: 0 0 0 0.25rem rgb(233, 248, 238);
+  //   0 0 0 0.25rem rgb(13 110 253 / 25%)
+}

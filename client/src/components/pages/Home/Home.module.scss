@@ -1,8 +1,15 @@
 @import '../../../styles/settings.scss';
 
 .home {
-  height: 60vh;
-
+  // height: fit-content;
+  // background-color: $color-light-green;
+  // z-index: -3;
+  // position: relative;
+  // background-image: 'url(/images/pexels-photomix-company-868110.jpg)';
+  height: 90vh;
+  .row {
+    margin: 0;
+  }
   img {
     object-fit: cover;
 
@@ -16,7 +23,7 @@
   .text_background {
     background-color: $color-light-green;
     display: block;
-    z-index: 1;
+    z-index: 2;
     position: relative;
     width: fit-content;
     border-radius: 10px;
@@ -33,7 +40,7 @@
     // backdrop-filter: blur(3px);
     h1 {
       position: relative;
-      z-index: 2;
+      z-index: 3;
       display: inline-block;
       opacity: 1;
       margin: 0;
@@ -59,8 +66,7 @@
 
 @media (max-width: 1200px) {
   .home {
-    height: 90vh;
-
+    // height: fit-content;
     img {
       object-fit: cover;
 

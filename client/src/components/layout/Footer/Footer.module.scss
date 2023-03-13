@@ -1,0 +1,8 @@
+@import '../../../styles/settings.scss';
+.footer {
+  display: flex;
+  justify-content: center;
+  background-color: $color-light-green;
+  border-top: 0.1px solid $color-dark-green;
+  border-bottom: 0.1px solid $color-dark-green;
+}

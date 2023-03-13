@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Alert, Button, Spinner, Form } from 'react-bootstrap';
 import { AUTH_URL } from '../../../config/config';
+import SmallButton from '../../common/SmallButton/SmallButton';
+import styles from './Register.module.scss';
 
 const Register = () => {
   const [login, setLogin] = useState('');
@@ -37,7 +39,7 @@ const Register = () => {
   };
 
   return (
-    <Form className='col-12 col-sm-3 mx-auto' onSubmit={handleSubmit}>
+    <Form className={styles.form} onSubmit={handleSubmit}>
       {status === 'success' && (
         <Alert variant='success'>
           <Alert.Heading>Success!</Alert.Heading>
@@ -81,6 +83,7 @@ const Register = () => {
           placeholder='Enter login'
           value={login}
           onChange={(e) => setLogin(e.target.value)}
+          className={styles.form_control}
         ></Form.Control>
       </Form.Group>
 
@@ -91,12 +94,13 @@ const Register = () => {
           placeholder='Enter password'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          className={styles.form_control}
         ></Form.Control>
       </Form.Group>
 
-      <Button variant='primary' type='submit'>
+      <SmallButton variant='primary' type='submit'>
         Submit
-      </Button>
+      </SmallButton>
     </Form>
   );
 };

@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import { AUTH_URL } from '../../../config/config';
 
 import { logIn } from '../../../redux/userRedux';
+import SmallButton from '../../common/SmallButton/SmallButton';
+import styles from './Login.module.scss';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -52,7 +54,7 @@ const Login = () => {
   };
 
   return (
-    <Form className='col-12 col-sm-3 mx-auto' onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} className={styles.form}>
       {status === 'success' && (
         <Alert variant='success'>
           <Alert.Heading>Success!</Alert.Heading>
@@ -88,6 +90,7 @@ const Login = () => {
           value={login}
           onChange={(e) => setLogin(e.target.value)}
           placeholder='Enter login'
+          className={styles.form_control}
         ></Form.Control>
       </Form.Group>
 
@@ -98,9 +101,10 @@ const Login = () => {
           placeholder='Enter password'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          className={styles.form_control}
         ></Form.Control>
       </Form.Group>
-      <Button type='submit'>Sign in</Button>
+      <SmallButton type='submit'>Sign in</SmallButton>
     </Form>
   );
 };

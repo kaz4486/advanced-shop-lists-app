@@ -236,42 +236,49 @@ const ItemsForm = ({
             </section>
           );
         })}
-        <Row className='mb-5'>
-          <SmallButton
-            type='button'
-            onClick={() => {
-              prepend({
-                name: '',
-                amount: 1,
-                unit: '',
-                volume: 0,
-              });
-            }}
-            className
-          >
-            Add form at the beginning
-          </SmallButton>
-          <SmallButton
-            type='button'
-            onClick={() => {
-              append({
-                name: '',
-                amount: 1,
-                unit: '',
-                volume: 0,
-              });
-            }}
-            className
-          >
-            Add form at the end
-          </SmallButton>
+        <Row className={styles.adding_items_buttons}>
+          <Col>
+            <Col xs={12} md={6} className='mb-2'>
+              <SmallButton
+                type='button'
+                onClick={() => {
+                  prepend({
+                    name: '',
+                    amount: 1,
+                    unit: '',
+                    volume: 0,
+                  });
+                }}
+                className='mb-2'
+              >
+                Add form at the beginning
+              </SmallButton>
+            </Col>
+            <Col xs={12} md={6}>
+              <SmallButton
+                type='button'
+                onClick={() => {
+                  append({
+                    name: '',
+                    amount: 1,
+                    unit: '',
+                    volume: 0,
+                  });
+                }}
+                className
+              >
+                Add form at the end
+              </SmallButton>
+            </Col>
+          </Col>
+          <Col className={styles.big_button}>
+            <Button type='submit' onClick={() => {}} className disabled={false}>
+              <FontAwesomeIcon icon={faNotesMedical} className={styles.icon} />
+              Add item(s)
+            </Button>
+          </Col>
         </Row>
-        <Row className='d-flex justify-content-center mb-5'>
-          <Button type='submit' onClick={() => {}} className disabled={false}>
-            <FontAwesomeIcon icon={faNotesMedical} className={styles.icon} />
-            Add item(s)
-          </Button>
-        </Row>
+        <Row className='d-flex justify-content-center mb-5'></Row>
       </form>
     </Container>
   );

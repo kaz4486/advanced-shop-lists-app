@@ -31,31 +31,43 @@ const Lists = () => {
   }, [dispatch, user]);
 
   if (user === null) {
-    return <Alert color='info'>To see your lists you need to log in</Alert>;
+    return (
+      <Alert color='info' className='text-center mb-0'>
+        To see your lists you need to log in
+      </Alert>
+    );
   }
 
   if (request.pending)
     return (
-      <Spinner className='mt-3' animation='border' role='status'>
+      <Spinner className='mt-3 text-center' animation='border' role='status'>
         <span className='visually-hidden'>Loading...</span>
       </Spinner>
     );
 
   if (!request.success)
-    return <Alert color='info'>Something went wrong...</Alert>;
+    return (
+      <Alert color='info' className='text-center mb-0'>
+        Something went wrong...
+      </Alert>
+    );
   // if (lists.length === 0) return <Navigate to='/' />;
   if (request.success && lists.length === 0) {
-    return <Alert color='info'>You don't have any saved lists</Alert>;
+    return (
+      <Alert color='info' className='text-center mb-0'>
+        You don't have any saved lists
+      </Alert>
+    );
   }
   if (request.success)
     return (
       <section className={styles.lists}>
         <Container>
+          {' '}
           <Row>
             {lists.map((list) => (
-              <Col sm={6} md={3} lg={2} key={list._id}>
-                {' '}
-                <div className={styles.list_summary}>
+              <Col xs={6} sm={4} md={3} lg={2} key={list._id}>
+                <div className={styles.list_summary} key={list._id}>
                   <ListSummary list={list} key={list._id} />
                 </div>
               </Col>

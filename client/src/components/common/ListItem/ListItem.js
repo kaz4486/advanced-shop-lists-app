@@ -1,4 +1,5 @@
 import { Col, Container, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import Button from '../Button/Button';
 import SmallButton from '../SmallButton/SmallButton';
 import styles from './ListItem.module.scss';
@@ -25,9 +26,7 @@ const ListItem = ({ item, removeAction }) => {
 
             {removeAction && (
               <Col xs={6} sm={2}>
-                <SmallButton onClick={() => removeAction(item.id)}>
-                  x
-                </SmallButton>
+                <button onClick={() => removeAction(item.id)}>x</button>
               </Col>
             )}
             <Col xs={0} sm={2} className={styles.hidden_column}></Col>

@@ -8,3 +8,11 @@
     margin-bottom: 2rem;
   }
 }
+
+.img_col {
+  img {
+    object-fit: cover;
+    width: 100vw;
+    max-height: 100%;
+  }
+}

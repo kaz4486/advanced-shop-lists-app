@@ -49,7 +49,6 @@ const ListForm = ({
 
   const request = useSelector(getRequest);
   // const user = useSelector(getUser);
-  console.log(submitedListName);
 
   const navigate = useNavigate();
 
@@ -75,6 +74,7 @@ const ListForm = ({
 
   const handleResetListItems = () => {
     dispatch(removeAllItems());
+    setSubmitedListName('');
   };
 
   useEffect(() => {
@@ -132,6 +132,18 @@ const ListForm = ({
         <section>
           <SwitchSystem action={handleSwitchSystem} system={system} />
         </section>
+        {submitListNameError && (
+          <Alert variant='warning'>
+            {' '}
+            <p>You need to add list name</p>
+          </Alert>
+        )}
+        {submitListItemError && (
+          <Alert variant='warning'>
+            {' '}
+            <p>You need to add at least 1 item</p>
+          </Alert>
+        )}
         <section>
           <ItemsForm
             system={system}
@@ -141,7 +153,7 @@ const ListForm = ({
             setShowDraggAlert={setShowDraggAlert}
           />
           <Row>
-            <Col xs={12} sm={6}>
+            <Col xs={12} sm={6} className='mb-2'>
               {' '}
               <form onSubmit={(e) => handleListSubmit(e)}>
                 <Button type='submit' disabled={user !== null ? false : true}>
@@ -167,8 +179,6 @@ const ListForm = ({
               </Button>
             </Col>
           </Row>
-          {submitListNameError && <p>You need to add list name</p>}
-          {submitListItemError && <p>You need to add at least 1 item</p>}
         </section>
 
         <Modal

@@ -17,33 +17,53 @@ const Home = () => {
   };
 
   return (
-    <div className={styles.home}>
-      <Row className='w-100 m-0 p-0'>
-        <img
-          src={`${process.env.PUBLIC_URL}/images/pexels-photomix-company-868110.jpg`}
-          alt='groceries'
-        />
-        <div className={styles.text_background}>
-          <h1>Make shopping lists great again!</h1>
-        </div>
-        <div className={styles.buttons}>
-          <div className='d-flex justify-content-center'>
-            <Link to={'/list/ad'} className='m-4'>
-              {' '}
-              <Button>
-                <FontAwesomeIcon icon={faPlusCircle} className={styles.icon} />
-                Create list
-              </Button>
-            </Link>
-            <div className='m-4'>
-              <Button onClick={handleButtonClick}>
-                <FontAwesomeIcon icon={faThList} className={styles.icon} />
-                All my lists
-              </Button>
+    <div>
+      <div
+        style={{
+          backgroundImage: `url(${
+            process.env.PUBLIC_URL +
+            '/images/pexels-photomix-company-868110.jpg'
+          })`,
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+          backgroundSize: 'cover',
+
+          // width: '800px',
+          // height: '800px',
+          // objectFit: 'cover',
+        }}
+        className={styles.home}
+      >
+        <Row className={styles.row}>
+          {/* <img
+            src={`${process.env.PUBLIC_URL}/images/pexels-photomix-company-868110.jpg`}
+            alt='groceries'
+          /> */}
+          <div className={styles.text_background}>
+            <h1>Make shopping lists great again!</h1>
+          </div>
+          <div className={styles.buttons}>
+            <div className='d-flex justify-content-center'>
+              <Link to={'/list/ad'} className='m-4'>
+                {' '}
+                <Button>
+                  <FontAwesomeIcon
+                    icon={faPlusCircle}
+                    className={styles.icon}
+                  />
+                  Create list
+                </Button>
+              </Link>
+              <div className='m-4'>
+                <Button onClick={handleButtonClick}>
+                  <FontAwesomeIcon icon={faThList} className={styles.icon} />
+                  All my lists
+                </Button>
+              </div>
             </div>
           </div>
-        </div>
-      </Row>
+        </Row>
+      </div>
     </div>
   );
 };

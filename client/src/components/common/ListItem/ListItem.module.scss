@@ -1,11 +1,13 @@
 @import '../../../styles/settings.scss';
 
 .list {
+  button {
+    border: none;
+    background-color: $color-light-green;
+    color: #bb4b38;
+  }
 }
 
-.row {
-  //   justify-content: center;
-}
 .row > * {
   //   height: 4rem;
   align-self: center;
