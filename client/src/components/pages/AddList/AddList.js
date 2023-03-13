@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import ListForm from '../../features/ListForm/ListForm';
 import createPublicationDate from '../../../utils/createPublicationDate';
 import { createListRequest } from '../../../redux/listsRedux';
-import { useEffect, useState } from 'react';
-import { getItems, removeAllItems } from '../../../redux/itemsRedux';
+import { useState } from 'react';
+import { getItems } from '../../../redux/itemsRedux';
 import { getUser } from '../../../redux/userRedux';
 import { Col, Row } from 'react-bootstrap';
 import styles from './AddList.module.scss';
@@ -15,15 +15,12 @@ import { faArrowCircleLeft } from '@fortawesome/free-solid-svg-icons';
 const AddList = () => {
   const dispatch = useDispatch();
 
-  // const listName = null;
-
   const items = useSelector(getItems);
   const user = useSelector(getUser);
 
   const [showModal, setShowModal] = useState(false);
 
   const handleClose = () => setShowModal(false);
-  // const handleShow = () => setShowModal(true);
 
   const [submitedListName, setSubmitedListName] = useState(null);
 
@@ -54,11 +51,7 @@ const AddList = () => {
       setSubmitedListNameError(true);
       setSubmitedListItemError(true);
     }
-
-    /// create new or print?
   };
-
-  //return różne warianty
 
   return (
     <div>
@@ -79,7 +72,6 @@ const AddList = () => {
                 user={user}
                 buttonName='Add to my lists'
                 showModal={showModal}
-                // setShowModal={setShowModal}
                 handleClose={handleClose}
               />
               <Row className='d-flex justify-content-start'>

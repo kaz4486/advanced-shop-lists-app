@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Button, Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import SmallButton from '../SmallButton/SmallButton';
 
 const ListSummary = ({ list }) => {

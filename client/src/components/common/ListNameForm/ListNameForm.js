@@ -1,4 +1,4 @@
-import { faEdit, faFileEdit } from '@fortawesome/free-solid-svg-icons';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
@@ -13,7 +13,6 @@ const ListNameForm = ({
   const [listName, setListName] = useState('');
 
   const [listNameError, setListNameError] = useState(false);
-  //   const [submittedListName, setSubmittedListName] = useState('');
   console.log(submitedName);
   console.log(listName);
 

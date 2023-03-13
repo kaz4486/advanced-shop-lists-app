@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import { Alert, Button, Spinner } from 'react-bootstrap';
+import { Alert, Spinner } from 'react-bootstrap';
 import { Form } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { AUTH_URL } from '../../../config/config';
-
 import { logIn } from '../../../redux/userRedux';
 import SmallButton from '../../common/SmallButton/SmallButton';
 import styles from './Login.module.scss';
@@ -15,7 +14,7 @@ const Login = () => {
 
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
-  const [status, setStatus] = useState(null); // null, 'loading', 'success', 'serverError', 'clientError'
+  const [status, setStatus] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();

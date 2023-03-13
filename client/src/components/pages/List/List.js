@@ -5,11 +5,10 @@ import {
   getListById,
   getRequest,
   loadListsRequest,
-  removeList,
   removeListRequest,
 } from '../../../redux/listsRedux';
 import Spinner from 'react-bootstrap/Spinner';
-import { Alert, Row, Col, Container, Button, Modal } from 'react-bootstrap';
+import { Alert, Row, Col, Button, Modal } from 'react-bootstrap';
 import ItemBar from '../../common/ItemBar/ItemBar';
 import ListItem from '../../common/ListItem/ListItem';
 import { getUser } from '../../../redux/userRedux';

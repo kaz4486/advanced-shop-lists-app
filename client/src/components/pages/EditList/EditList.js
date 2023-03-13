@@ -1,29 +1,14 @@
-import {
-  faArrowCircleLeft,
-  faArrowLeft,
-  faBackspace,
-  faBackward,
-  faBackwardStep,
-  faPlus,
-} from '@fortawesome/free-solid-svg-icons';
+import { faArrowCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
-import { Alert, Col, Row, Spinner } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
-import {
-  addItem,
-  addItemsByList,
-  getItems,
-  loadItems,
-  removeAllItems,
-} from '../../../redux/itemsRedux';
+import { addItem, getItems } from '../../../redux/itemsRedux';
 import {
   editListRequest,
   getListById,
   getRequest,
-  loadLists,
-  loadListsByUserRequest,
   loadListsRequest,
 } from '../../../redux/listsRedux';
 import { getUser } from '../../../redux/userRedux';
@@ -34,23 +19,19 @@ import styles from './EditList.module.scss';
 const EditList = () => {
   const dispatch = useDispatch();
 
-  //NAZWA LISTY??
-
   const { id } = useParams();
   const list = useSelector((state) => getListById(state, id));
   const user = useSelector(getUser);
-  //   const items = list?.items;
+
   const items = useSelector(getItems);
   const request = useSelector(getRequest);
   console.log(request);
   console.log('list', list);
 
-  //   const request = useSelector(getRequest);
-
   useEffect(() => {
     dispatch(loadListsRequest());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  //   const [items, setItems] = useState(list?.items);
 
   const [showModal, setShowModal] = useState(false);
 
@@ -61,33 +42,17 @@ const EditList = () => {
   const [submitListNameError, setSubmitedListNameError] = useState(false);
   const [submitListItemError, setSubmitedListItemError] = useState(false);
 
-  // const lists = useSelector(getListByUser(user));
-  // const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   if (user !== null) {
-  //     dispatch(loadListsByUserRequest(user));
-  //   }
-  //   // dispatch(loadListsRequest());
-  // }, [dispatch, user]);
-
   useEffect(() => {
     list?.items.forEach((item) => dispatch(addItem({ ...item })));
     setSubmitedListName(list?.name);
   }, [dispatch, list]);
 
-  // useEffect(() => {
-  //   return () => {
-  //     dispatch(removeAllItems);
-  //   };
-  // });
   let listToEdit = {};
 
   const handleListSubmit = (e) => {
     e.preventDefault();
     setSubmitedListItemError(false);
     setSubmitedListNameError(false);
-    // let listToEdit = {};
 
     listToEdit.name = submitedListName;
     console.log(listToEdit.name);
@@ -96,10 +61,7 @@ const EditList = () => {
     listToEdit.user = user;
 
     if (submitedListName && items.length !== 0) {
-      // setSubmitedListName(listToEdit.name);
-
       dispatch(editListRequest(listToEdit, id));
-      // dispatch(loadListsRequest());
       setShowModal(true);
     } else if (!submitedListName && items.length !== 0) {
       setSubmitedListNameError(true);
@@ -110,31 +72,6 @@ const EditList = () => {
       setSubmitedListItemError(true);
     }
   };
-
-  // if (!list)
-  //   return (
-  //     <Spinner className='mt-3' animation='border' role='status'>
-  //       <span className='visually-hidden'>Loading...</span>
-  //     </Spinner>
-  //   );
-
-  // if (!list)
-  //   if (list)
-  // return (
-  //   <Spinner className='mt-3' animation='border' role='status'>
-  //     <span className='visually-hidden'>Loading...</span>
-  //   </Spinner>
-  // );
-
-  // if (list?.items.length === 0)
-  //   return <Alert color='info'>Something went wrong...</Alert>;
-
-  // if (items.length === 0)
-  //   return (
-  //     <Spinner className='mt-3' animation='border' role='status'>
-  //       <span className='visually-hidden'>Loading...</span>
-  //     </Spinner>
-  //   );
 
   return (
     <div>
@@ -153,7 +90,6 @@ const EditList = () => {
                 setSubmitedListNameError={setSubmitedListNameError}
                 handleListSubmit={handleListSubmit}
                 items={items}
-                // setItems={setItems}
                 user={user}
                 buttonName='Edit that list'
                 id={id}

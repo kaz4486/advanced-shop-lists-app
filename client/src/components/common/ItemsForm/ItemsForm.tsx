@@ -1,13 +1,9 @@
-import {
-  faList,
-  faNotesMedical,
-  faNoteSticky,
-} from '@fortawesome/free-solid-svg-icons';
+import { faNotesMedical } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { useForm, useFieldArray, useWatch, Controller } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addItem } from '../../../redux/itemsRedux';
 import Button from '../Button/Button';
 import SmallButton from '../SmallButton/SmallButton';
@@ -65,7 +61,6 @@ const ItemsForm = ({
       return setDoubleNameError(true);
     }
     data.item.forEach((element) => dispatch(addItem({ ...element })));
-    // dispatch(edi)
     setShowDraggAlert(true);
   };
 

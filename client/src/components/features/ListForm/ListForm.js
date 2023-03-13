@@ -7,7 +7,6 @@ import {
   removeItem,
 } from '../../../redux/itemsRedux';
 import { getRequest, loadListsRequest } from '../../../redux/listsRedux';
-import ItemBar from '../../common/ItemBar/ItemBar';
 import ItemsForm from '../../common/ItemsForm/ItemsForm.tsx';
 import { Alert } from 'react-bootstrap';
 import SwitchSystem from '../SwitchSystem/SwitchSystem';
@@ -18,14 +17,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../../common/Button/Button';
 import styles from './ListForm.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faAdd,
-  faEdit,
-  faList12,
-  faListSquares,
-  faPrint,
-  faThList,
-} from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faPrint, faThList } from '@fortawesome/free-solid-svg-icons';
 
 const ListForm = ({
   submitedListName,
@@ -48,7 +40,6 @@ const ListForm = ({
   const [dontShowAlertAgain, setDontShowAlertAgain] = useState(false);
 
   const request = useSelector(getRequest);
-  // const user = useSelector(getUser);
 
   const navigate = useNavigate();
 
@@ -81,6 +72,7 @@ const ListForm = ({
     return () => {
       dispatch(removeAllItems());
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleCreateNewList = () => {
@@ -110,7 +102,6 @@ const ListForm = ({
         </section>
 
         <section>
-          {/* {items.length !== 0 && <ItemBar />} */}
           {items.length !== 0 && (
             <div className='mb-2'>
               <ItemsList

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Alert, Button, Spinner, Form } from 'react-bootstrap';
+import { Alert, Spinner, Form } from 'react-bootstrap';
 import { AUTH_URL } from '../../../config/config';
 import SmallButton from '../../common/SmallButton/SmallButton';
 import styles from './Register.module.scss';
@@ -7,8 +7,7 @@ import styles from './Register.module.scss';
 const Register = () => {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
-  const [status, setStatus] = useState(null); // 'success' ||'clientError' ||'serverError' ||'loginError' ||'loading'
-
+  const [status, setStatus] = useState(null);
   const handleSubmit = (e) => {
     e.preventDefault();
 

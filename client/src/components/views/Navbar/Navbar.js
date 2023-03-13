@@ -1,10 +1,8 @@
-import { Col, Row } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { getUser } from '../../../redux/userRedux';
 import ResponsiveMenu from 'react-responsive-navbar';
 import styles from './Navbar.module.scss';
 import { NavLink } from 'react-router-dom';
-import clsx from 'clsx';
 
 const Navbar = () => {
   const user = useSelector((state) => getUser(state));
@@ -96,30 +94,6 @@ const Navbar = () => {
         </ul>
       }
     />
-
-    /* <nav> <Row>
-        <Col xs={4}></Col>
-        <Col xs={2}>
-          <a href='/'>Home</a>
-        </Col>
-        <Col xs={2}>
-          <a href={`/lists`}>Lists</a>
-        </Col>
-        <Col xs={2}>
-          <a href='/register'>Register</a>
-        </Col>
-        {user !== null && (
-          <Col xs={2}>
-            <a href='/logout'>Logout</a>
-          </Col>
-        )}
-        {user === null && (
-          <Col xs={2}>
-            <a href='/login'>Login</a>
-          </Col>
-        )}
-      </Row>
-    </nav> */
   );
 };
 

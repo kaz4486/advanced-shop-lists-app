@@ -6,7 +6,6 @@ import { getPageMargins } from '../../../utils/printPageMargin';
 import styles from './ItemsList.module.scss';
 import ItemBar from '../../common/ItemBar/ItemBar';
 import SmallButton from '../../common/SmallButton/SmallButton';
-import clsx from 'clsx';
 
 const ItemsList = forwardRef(
   (

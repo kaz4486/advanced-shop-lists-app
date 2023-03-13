@@ -1,16 +1,14 @@
 import { useEffect } from 'react';
-import { Button, Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  getListByUser,
   getLists,
   getRequest,
   loadListsByUserRequest,
-  loadListsRequest,
 } from '../../../redux/listsRedux';
 import Spinner from 'react-bootstrap/Spinner';
 import { Alert } from 'react-bootstrap';
-// import { Navigate, useNavigate, Link } from 'react-router-dom';
+
 import ListSummary from '../../common/ListSummary/ListSummary';
 import { getUser } from '../../../redux/userRedux';
 import styles from './Lists.module.scss';
@@ -20,14 +18,11 @@ const Lists = () => {
   const lists = useSelector(getLists);
   const request = useSelector(getRequest);
   const user = useSelector(getUser);
-  // const lists = useSelector(getListByUser(user));
-  // const navigate = useNavigate();
 
   useEffect(() => {
     if (user !== null) {
       dispatch(loadListsByUserRequest(user));
     }
-    // dispatch(loadListsRequest());
   }, [dispatch, user]);
 
   if (user === null) {
@@ -51,7 +46,7 @@ const Lists = () => {
         Something went wrong...
       </Alert>
     );
-  // if (lists.length === 0) return <Navigate to='/' />;
+
   if (request.success && lists.length === 0) {
     return (
       <Alert color='info' className='text-center mb-0'>

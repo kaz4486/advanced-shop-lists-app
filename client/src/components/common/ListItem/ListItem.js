@@ -1,7 +1,4 @@
 import { Col, Container, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import Button from '../Button/Button';
-import SmallButton from '../SmallButton/SmallButton';
 import styles from './ListItem.module.scss';
 
 const ListItem = ({ item, removeAction }) => {

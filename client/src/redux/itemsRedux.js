@@ -34,8 +34,6 @@ export const getItemsByList = (payload) => ({
   payload,
 });
 
-// export const loadItemsByListRequest =
-
 const itemsReducer = (statePart = [], action = {}) => {
   switch (action.type) {
     case LOAD_ITEMS:
@@ -50,8 +48,6 @@ const itemsReducer = (statePart = [], action = {}) => {
     // eslint-disable-next-line no-fallthrough
     case ADD_ITEM_BY_LIST:
       return action.payload;
-    // case GET_ITEMS_BY_LIST:
-    // return statePart.map((list) => )
     case REMOVE_ITEM:
       return statePart.filter((item) => item.id !== action.payload);
     case REMOVE_ALL_ITEMS:

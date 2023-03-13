@@ -13,10 +13,6 @@ export const getListById = ({ lists }, listId) =>
 export const getListByUser = ({ lists }, userId) =>
   lists.data.find((list) => list.user === userId);
 
-// export const getListByInternalId = ({ lists }, internalId) => {
-//   lists.data.find((list) => list.internalId === internalId);
-// };
-
 //actions
 
 const reducerName = 'lists';
