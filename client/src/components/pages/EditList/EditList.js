@@ -8,7 +8,6 @@ import { addItem, getItems } from '../../../redux/itemsRedux';
 import {
   editListRequest,
   getListById,
-  getRequest,
   loadListsRequest,
 } from '../../../redux/listsRedux';
 import { getUser } from '../../../redux/userRedux';
@@ -24,9 +23,6 @@ const EditList = () => {
   const user = useSelector(getUser);
 
   const items = useSelector(getItems);
-  const request = useSelector(getRequest);
-  console.log(request);
-  console.log('list', list);
 
   useEffect(() => {
     dispatch(loadListsRequest());
@@ -55,7 +51,6 @@ const EditList = () => {
     setSubmitedListNameError(false);
 
     listToEdit.name = submitedListName;
-    console.log(listToEdit.name);
 
     listToEdit.items = items;
     listToEdit.user = user;

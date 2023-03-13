@@ -37,7 +37,6 @@ const Login = () => {
           dispatch(logIn(login));
 
           localStorage.setItem('user', JSON.stringify(user.login));
-          console.log({ login, password });
           setTimeout(() => {
             return navigate('/');
           }, 2000);

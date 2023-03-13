@@ -13,8 +13,6 @@ const Register = () => {
 
     const userData = { login, password };
 
-    console.log(userData);
-
     const options = {
       method: 'post',
       body: JSON.stringify(userData),

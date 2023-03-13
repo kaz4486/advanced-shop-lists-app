@@ -65,8 +65,6 @@ export const loadListsByUserRequest = (login) => {
 };
 
 export const createListRequest = (data) => {
-  console.log(data);
-
   return async (dispatch) => {
     dispatch(startRequest({ name: CREATE_LIST }));
     try {
@@ -76,7 +74,6 @@ export const createListRequest = (data) => {
         { withCredentials: true },
         { headers: { 'Content-Type': 'application/json' } }
       );
-      console.log(res);
 
       dispatch(createList(res.data));
       dispatch(endRequest({ name: CREATE_LIST }));
@@ -96,7 +93,6 @@ export const editListRequest = (data, id) => {
         { withCredentials: true },
         { headers: { 'Content-Type': 'application/json' } }
       );
-      console.log(res.data.modifiedList);
       await dispatch(editList(res.data.modifiedList));
       dispatch(endRequest({ name: EDIT_LIST }));
     } catch (e) {

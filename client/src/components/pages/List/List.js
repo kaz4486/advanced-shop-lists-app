@@ -25,7 +25,6 @@ const List = () => {
   const list = useSelector((state) => getListById(state, id));
   const request = useSelector(getRequest);
   const user = useSelector(getUser);
-  console.log(list);
 
   const [showModal, setShowModal] = useState(false);
   const [showAlert, setShowAlert] = useState(false);

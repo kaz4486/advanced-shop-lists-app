@@ -13,8 +13,6 @@ const ListNameForm = ({
   const [listName, setListName] = useState('');
 
   const [listNameError, setListNameError] = useState(false);
-  console.log(submitedName);
-  console.log(listName);
 
   const handleListNameSubmit = (e) => {
     e.preventDefault();

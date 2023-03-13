@@ -38,7 +38,6 @@ const AddList = () => {
     listToCreate.publicationDate = publicationDate;
     listToCreate.items = items;
     listToCreate.user = user;
-    console.log(listToCreate);
 
     if (submitedListName && items.length !== 0) {
       dispatch(createListRequest(listToCreate));
