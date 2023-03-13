@@ -39,7 +39,6 @@ exports.post = async (req, res) => {
         publicationDate,
         items,
         user: foundUser._id,
-        // internalId,
       });
       return res.status(201).send({ message: 'New List Added' + newList });
     }
@@ -54,16 +53,12 @@ exports.patch = async (req, res) => {
 
   try {
     const list = await List.findOne({ _id: req.params.id });
-    console.log(list);
     const foundUser = await User.findOne({ login: user });
-    console.log(user);
     let modifiedList = {};
     if (!list || list.user != foundUser._id) {
-      console.log('bad');
       return res.status(400).send({ message: 'Bad request' });
     }
     if (isString(name) && Array.isArray(items) && items !== []) {
-      console.log('1');
       modifiedList = await List.findOneAndUpdate(
         { _id: req.params.id },
         {
@@ -116,7 +111,6 @@ exports.delete = async (req, res) => {
     const list = await List.findOne({ _id: req.params.id });
 
     const foundUser = await User.findOne({ login: req.session.user.login });
-    console.log(foundUser);
     if (list.user != foundUser._id) {
       return res.status(400).send({ message: 'Bad request' });
     }

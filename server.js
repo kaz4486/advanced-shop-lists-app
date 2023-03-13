@@ -6,10 +6,6 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo');
 require('dotenv').config();
 
-const employeesRoutes = require('./routes/employees.routes');
-const departmentsRoutes = require('./routes/departments.routes');
-const productsRoutes = require('./routes/products.routes');
-
 const app = express();
 
 // connects our backend code with the database
