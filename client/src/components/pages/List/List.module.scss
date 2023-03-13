@@ -6,6 +6,13 @@
   background-color: $color-light-green;
   .list {
     list-style: none;
+    padding-left: 0;
+  }
+  .item {
+    background-color: $color-white-background;
+    color: $color-dark-active;
+    margin-bottom: 1rem;
+    border-radius: 5px;
   }
 }
 
@@ -19,13 +26,6 @@
 
 .modal {
   color: $color-dark-green;
-}
-
-.item {
-  background-color: $color-white-background;
-  color: $color-dark-active;
-  margin-bottom: 1rem;
-  border-radius: 5px;
 }
 
 @media (max-width: 580px) {

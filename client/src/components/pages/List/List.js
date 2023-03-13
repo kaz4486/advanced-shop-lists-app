@@ -74,13 +74,13 @@ const List = () => {
         </ul>
 
         <Row className='d-flex justify-content-center my-5'>
-          <Col sm={6} className='d-flex justify-content-end'>
+          <Col xs={6} className='d-flex justify-content-end'>
             {' '}
             <Link to={'/lists/edit/' + list._id}>
               <SmallButton>Edit</SmallButton>
             </Link>
           </Col>
-          <Col sm={6} className='d-flex justify-content-start'>
+          <Col xs={6} className='d-flex justify-content-start'>
             {' '}
             <SmallButton className='red' onClick={handleShow}>
               Delete
