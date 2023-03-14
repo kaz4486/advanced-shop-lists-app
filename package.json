@@ -18,7 +18,8 @@
     "express-session": "^1.17.3",
     "mongodb": "3.3.2",
     "mongoose": "^6.8.4",
-    "nodemon": "^1.19.1"
+    "nodemon": "^1.19.1",
+    "react-document-meta": "^3.0.0-beta.2"
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -7,6 +7,7 @@ import styles from './Home.module.scss';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle, faThList } from '@fortawesome/free-solid-svg-icons';
+import DocumentMeta from 'react-document-meta';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -15,8 +16,14 @@ const Home = () => {
     navigate(`/lists`);
   };
 
+  const meta = {
+    name: 'google-site-verification',
+    content: 'Xf_04ZdDmMtG8HXsuZGAwXmNP97gU3nsjIIybp1En1s',
+  };
+
   return (
     <div>
+      <DocumentMeta {...meta} />
       <div
         style={{
           backgroundImage: `url(${
