@@ -45,7 +45,7 @@ const EditList = () => {
 
   let listToEdit = {};
 
-  const handleListSubmit = (e) => {
+  const handleListSubmit = async (e) => {
     e.preventDefault();
     setSubmitedListItemError(false);
     setSubmitedListNameError(false);
@@ -56,7 +56,8 @@ const EditList = () => {
     listToEdit.user = user;
 
     if (submitedListName && items.length !== 0) {
-      dispatch(editListRequest(listToEdit, id));
+      await dispatch(editListRequest(listToEdit, id));
+      await dispatch(loadListsRequest());
       setShowModal(true);
     } else if (!submitedListName && items.length !== 0) {
       setSubmitedListNameError(true);

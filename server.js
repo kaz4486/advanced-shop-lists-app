@@ -26,7 +26,11 @@ const db = mongoose.connection;
 
 app.use(
   cors({
-    origin: ['http://localhost:3000', 'http://localhost:8000'],
+    origin: [
+      'http://localhost:3000',
+      'http://localhost:8000',
+      'http://localhost:3002',
+    ],
     credentials: true,
   })
 );
